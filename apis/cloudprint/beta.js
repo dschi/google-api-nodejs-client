@@ -38,7 +38,7 @@ function CloudPrint(options) {
     };
     this.jobs =
     {
-        sumbmit: function (params, callback) {
+        submit: function (params, callback) {
             var parameters = {
                 options: {
                     url: 'https://www.google.com/cloudprint/submit',
