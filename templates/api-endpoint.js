@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 {% set Name = name|capitalize %}
 {% set Version = version|replace('\.', '_')|capitalize %}

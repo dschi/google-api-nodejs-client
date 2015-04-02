@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * CustomSearch API
@@ -88,6 +89,7 @@ function Customsearch(options) {
         },
         params: params,
         requiredParams: ['q'],
+        pathParams: [],
         context: self
       };
 

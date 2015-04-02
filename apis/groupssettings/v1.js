@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Groups Settings API
@@ -52,7 +53,7 @@ function Groupssettings(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
+          url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'GET'
         },
         params: params,
@@ -81,7 +82,7 @@ function Groupssettings(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
+          url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'PATCH'
         },
         params: params,
@@ -110,7 +111,7 @@ function Groupssettings(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/groups/v1/groups/' + params.groupUniqueId,
+          url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'PUT'
         },
         params: params,

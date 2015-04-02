@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * QPX Express API
@@ -56,6 +57,8 @@ function Qpxexpress(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

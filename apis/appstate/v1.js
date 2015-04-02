@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google App State API
@@ -53,7 +54,7 @@ function Appstate(options) {
     clear: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/appstate/v1/states/' + params.stateKey + '/clear',
+          url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}/clear',
           method: 'POST'
         },
         params: params,
@@ -81,7 +82,7 @@ function Appstate(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/appstate/v1/states/' + params.stateKey,
+          url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'DELETE'
         },
         params: params,
@@ -109,7 +110,7 @@ function Appstate(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/appstate/v1/states/' + params.stateKey,
+          url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'GET'
         },
         params: params,
@@ -141,6 +142,8 @@ function Appstate(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -165,7 +168,7 @@ function Appstate(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/appstate/v1/states/' + params.stateKey,
+          url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'PUT'
         },
         params: params,

@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Maps Engine API
@@ -52,7 +53,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/assets/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/assets/{id}',
           method: 'GET'
         },
         params: params,
@@ -83,8 +84,9 @@ function Mapsengine(options) {
      * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
-     * @param  {string=} params.type - An asset type restriction. If set, only resources of this type will be returned.
+     * @param  {string=} params.type - A comma separated list of asset types. Returned assets will have one of the types from the provided list. Supported values are 'map', 'layer', 'rasterCollection' and 'table'.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -95,6 +97,8 @@ function Mapsengine(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -121,7 +125,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/assets/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/assets/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -135,34 +139,6 @@ function Mapsengine(options) {
     },
 
     permissions: {
-
-      /**
-       * mapsengine.assets.permissions.getIdForEmail
-       *
-       * @desc Return permission ID given an email address.
-       *
-       * @alias mapsengine.assets.permissions.getIdForEmail
-       * @memberOf! mapsengine(exp2)
-       *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.email - The email address to be translated into permission ID.
-       * @param  {callback} callback - The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIdForEmail: function(params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/permissionids/' + params.email,
-            method: 'GET'
-          },
-          params: params,
-          requiredParams: ['email'],
-          pathParams: ['email'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * mapsengine.assets.permissions.list
@@ -180,7 +156,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/assets/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/assets/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -212,7 +188,7 @@ function Mapsengine(options) {
     cancelProcessing: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/cancelProcessing',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/cancelProcessing',
           method: 'POST'
         },
         params: params,
@@ -245,6 +221,8 @@ function Mapsengine(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -267,7 +245,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -289,14 +267,42 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the layer.
-     * @param  {string=} params.version -
+     * @param  {string=} params.version - Deprecated: The version parameter indicates which version of the layer should be returned. When version is set to published, the published version of the layer will be returned. Please use the layers.getPublished endpoint instead.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.layers.getPublished
+     *
+     * @desc Return the published metadata for a particular layer.
+     *
+     * @alias mapsengine.layers.getPublished
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the layer.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getPublished: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/published',
           method: 'GET'
         },
         params: params,
@@ -328,6 +334,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -339,6 +346,39 @@ function Mapsengine(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.layers.listPublished
+     *
+     * @desc Return all published layers readable by the current user.
+     *
+     * @alias mapsengine.layers.listPublished
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 100.
+     * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listPublished: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/published',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -362,7 +402,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -390,7 +430,7 @@ function Mapsengine(options) {
     process: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/process',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/process',
           method: 'POST'
         },
         params: params,
@@ -419,7 +459,7 @@ function Mapsengine(options) {
     publish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/publish',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/publish',
           method: 'POST'
         },
         params: params,
@@ -447,7 +487,7 @@ function Mapsengine(options) {
     unpublish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/unpublish',
+          url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/unpublish',
           method: 'POST'
         },
         params: params,
@@ -479,7 +519,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -495,11 +535,40 @@ function Mapsengine(options) {
     permissions: {
 
       /**
-       * mapsengine.layers.permissions.batchInsert
+       * mapsengine.layers.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.layers.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.layers.permissions.batchUpdate
        *
        * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
-       * @alias mapsengine.layers.permissions.batchInsert
+       * @alias mapsengine.layers.permissions.batchUpdate
        * @memberOf! mapsengine(exp2)
        *
        * @param  {object} params - Parameters for request
@@ -508,10 +577,10 @@ function Mapsengine(options) {
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      batchInsert: function(params, callback) {
+      batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -539,7 +608,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/layers/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/layers/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -575,6 +644,8 @@ function Mapsengine(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -597,7 +668,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -619,14 +690,42 @@ function Mapsengine(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The ID of the map.
-     * @param  {string=} params.version -
+     * @param  {string=} params.version - Deprecated: The version parameter indicates which version of the map should be returned. When version is set to published, the published version of the map will be returned. Please use the maps.getPublished endpoint instead.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.maps.getPublished
+     *
+     * @desc Return the published metadata for a particular map.
+     *
+     * @alias mapsengine.maps.getPublished
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the map.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getPublished: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/published',
           method: 'GET'
         },
         params: params,
@@ -658,8 +757,9 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
-     * @param  {string=} params.version -
+     * @param  {string=} params.version - Deprecated: The version parameter indicates which version of the maps should be returned. When version is set to published this parameter will filter the result set to include only maps that are published. Please use the maps.listPublished endpoint instead.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -670,6 +770,39 @@ function Mapsengine(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.maps.listPublished
+     *
+     * @desc Return all published maps readable by the current user.
+     *
+     * @alias mapsengine.maps.listPublished
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {integer=} params.maxResults - The maximum number of items to include in a single response page. The maximum supported value is 100.
+     * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
+     * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listPublished: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/published',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -693,7 +826,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -722,7 +855,7 @@ function Mapsengine(options) {
     publish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/publish',
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/publish',
           method: 'POST'
         },
         params: params,
@@ -750,7 +883,7 @@ function Mapsengine(options) {
     unpublish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/unpublish',
+          url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/unpublish',
           method: 'POST'
         },
         params: params,
@@ -765,11 +898,40 @@ function Mapsengine(options) {
     permissions: {
 
       /**
-       * mapsengine.maps.permissions.batchInsert
+       * mapsengine.maps.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.maps.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.maps.permissions.batchUpdate
        *
        * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
-       * @alias mapsengine.maps.permissions.batchInsert
+       * @alias mapsengine.maps.permissions.batchUpdate
        * @memberOf! mapsengine(exp2)
        *
        * @param  {object} params - Parameters for request
@@ -778,10 +940,10 @@ function Mapsengine(options) {
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      batchInsert: function(params, callback) {
+      batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -809,7 +971,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/maps/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/maps/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -844,6 +1006,8 @@ function Mapsengine(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -872,11 +1036,11 @@ function Mapsengine(options) {
       create: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/projects/' + params.projectId + '/icons',
+            url: 'https://www.googleapis.com/mapsengine/exp2/projects/{projectId}/icons',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/projects/' + params.projectId + '/icons',
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/projects/{projectId}/icons',
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
           context: self
@@ -888,7 +1052,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.projects.icons.get
        *
-       * @desc Return metadata for a specific icon
+       * @desc Return an icon or its associated metadata
        *
        * @alias mapsengine.projects.icons.get
        * @memberOf! mapsengine(exp2)
@@ -902,7 +1066,7 @@ function Mapsengine(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/projects/' + params.projectId + '/icons/' + params.id,
+            url: 'https://www.googleapis.com/mapsengine/exp2/projects/{projectId}/icons/{id}',
             method: 'GET'
           },
           params: params,
@@ -932,7 +1096,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/projects/' + params.projectId + '/icons',
+            url: 'https://www.googleapis.com/mapsengine/exp2/projects/{projectId}/icons',
             method: 'GET'
           },
           params: params,
@@ -964,7 +1128,7 @@ function Mapsengine(options) {
     cancelProcessing: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/cancelProcessing',
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/cancelProcessing',
           method: 'POST'
         },
         params: params,
@@ -996,6 +1160,8 @@ function Mapsengine(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1018,7 +1184,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1046,7 +1212,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}',
           method: 'GET'
         },
         params: params,
@@ -1078,6 +1244,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1089,6 +1256,8 @@ function Mapsengine(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1112,7 +1281,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -1140,7 +1309,7 @@ function Mapsengine(options) {
     process: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/process',
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/process',
           method: 'POST'
         },
         params: params,
@@ -1172,7 +1341,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -1188,11 +1357,40 @@ function Mapsengine(options) {
     permissions: {
 
       /**
-       * mapsengine.rasterCollections.permissions.batchInsert
+       * mapsengine.rasterCollections.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.rasterCollections.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.rasterCollections.permissions.batchUpdate
        *
        * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
-       * @alias mapsengine.rasterCollections.permissions.batchInsert
+       * @alias mapsengine.rasterCollections.permissions.batchUpdate
        * @memberOf! mapsengine(exp2)
        *
        * @param  {object} params - Parameters for request
@@ -1201,10 +1399,10 @@ function Mapsengine(options) {
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      batchInsert: function(params, callback) {
+      batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -1232,7 +1430,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -1264,7 +1462,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/rasters/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/rasters/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -1293,7 +1491,7 @@ function Mapsengine(options) {
       batchInsert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/rasters/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/rasters/batchInsert',
             method: 'POST'
           },
           params: params,
@@ -1324,6 +1522,7 @@ function Mapsengine(options) {
        * @param  {string=} params.modifiedBefore - An RFC 3339 formatted date-time value (e.g. 1970-01-01T00:00:00Z). Returned assets will have been modified at or before this time.
        * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+       * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
        * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -1331,7 +1530,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/' + params.id + '/rasters',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasterCollections/{id}/rasters',
             method: 'GET'
           },
           params: params,
@@ -1363,7 +1562,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1391,7 +1590,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}',
           method: 'GET'
         },
         params: params,
@@ -1423,6 +1622,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1435,6 +1635,7 @@ function Mapsengine(options) {
         },
         params: params,
         requiredParams: ['projectId'],
+        pathParams: [],
         context: self
       };
 
@@ -1458,7 +1659,7 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -1486,7 +1687,7 @@ function Mapsengine(options) {
     process: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/process',
+          url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/process',
           method: 'POST'
         },
         params: params,
@@ -1518,6 +1719,8 @@ function Mapsengine(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1546,11 +1749,11 @@ function Mapsengine(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/files',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/files',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/rasters/' + params.id + '/files',
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/rasters/{id}/files',
           requiredParams: ['id', 'filename'],
           pathParams: ['id'],
           context: self
@@ -1580,7 +1783,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -1594,6 +1797,64 @@ function Mapsengine(options) {
     },
 
     permissions: {
+
+      /**
+       * mapsengine.rasters.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.rasters.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.rasters.permissions.batchUpdate
+       *
+       * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
+       *
+       * @alias mapsengine.rasters.permissions.batchUpdate
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset to which permissions will be added.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchUpdate: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/permissions/batchUpdate',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * mapsengine.rasters.permissions.list
@@ -1611,7 +1872,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/rasters/{id}/permissions',
             method: 'GET'
           },
           params: params,
@@ -1647,6 +1908,8 @@ function Mapsengine(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1669,7 +1932,7 @@ function Mapsengine(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -1698,7 +1961,7 @@ function Mapsengine(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}',
           method: 'GET'
         },
         params: params,
@@ -1730,6 +1993,7 @@ function Mapsengine(options) {
      * @param  {string=} params.processingStatus -
      * @param  {string=} params.projectId - The ID of a Maps Engine project, used to filter the response. To list all available projects with their IDs, send a Projects: list request. You can also find your project ID as the value of the DashboardPlace:cid URL parameter when signed in to mapsengine.google.com.
      * @param  {string=} params.role - The role parameter indicates that the response should only contain assets where the current user has the specified level of access.
+     * @param  {string=} params.search - An unstructured search string used to filter the set of results based on asset metadata.
      * @param  {string=} params.tags - A comma separated list of tags. Returned assets will contain all the tags from the list.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1741,6 +2005,8 @@ function Mapsengine(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1764,8 +2030,36 @@ function Mapsengine(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id,
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}',
           method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: ['id'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * mapsengine.tables.process
+     *
+     * @desc Process a table asset.
+     *
+     * @alias mapsengine.tables.process
+     * @memberOf! mapsengine(exp2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The ID of the table.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    process: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/process',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['id'],
@@ -1796,6 +2090,8 @@ function Mapsengine(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1821,7 +2117,7 @@ function Mapsengine(options) {
       batchDelete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/features/batchDelete',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/features/batchDelete',
             method: 'POST'
           },
           params: params,
@@ -1836,7 +2132,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.tables.features.batchInsert
        *
-       * @desc Append the supplied features.
+       * @desc Append features to an existing table.  A single batchInsert request can create:  - Up to 50 features. - A combined total of 10 000 vertices. Feature limits are documented in the Supported data formats and limits article of the Google Maps Engine help center. Note that free and paid accounts have different limits.  For more information about inserting features, read Creating features in the Google Maps Engine developer's guide.
        *
        * @alias mapsengine.tables.features.batchInsert
        * @memberOf! mapsengine(exp2)
@@ -1850,7 +2146,7 @@ function Mapsengine(options) {
       batchInsert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/features/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/features/batchInsert',
             method: 'POST'
           },
           params: params,
@@ -1865,7 +2161,7 @@ function Mapsengine(options) {
       /**
        * mapsengine.tables.features.batchPatch
        *
-       * @desc Patch the supplied features.
+       * @desc Update the supplied features.  A single batchPatch request can update:  - Up to 50 features. - A combined total of 10 000 vertices. Feature limits are documented in the Supported data formats and limits article of the Google Maps Engine help center. Note that free and paid accounts have different limits.  Feature updates use HTTP PATCH semantics:  - A supplied value replaces an existing value (if any) in that field. - Omitted fields remain unchanged. - Complex values in geometries and properties must be replaced as atomic units. For example, providing just the coordinates of a geometry is not allowed; the complete geometry, including type, must be supplied. - Setting a property's value to null deletes that property. For more information about updating features, read Updating features in the Google Maps Engine developer's guide.
        *
        * @alias mapsengine.tables.features.batchPatch
        * @memberOf! mapsengine(exp2)
@@ -1879,7 +2175,7 @@ function Mapsengine(options) {
       batchPatch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/features/batchPatch',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/features/batchPatch',
             method: 'POST'
           },
           params: params,
@@ -1910,7 +2206,7 @@ function Mapsengine(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.tableId + '/features/' + params.id,
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{tableId}/features/{id}',
             method: 'GET'
           },
           params: params,
@@ -1935,7 +2231,7 @@ function Mapsengine(options) {
        * @param  {string=} params.include - A comma separated list of optional data to include. Optional data available: schema.
        * @param  {string=} params.intersects - A geometry literal that specifies the spatial restriction of the query.
        * @param  {integer=} params.limit - The total number of features to return from the query, irrespective of the number of pages.
-       * @param  {integer=} params.maxResults - The maximum number of items to include in the response, used for paging.
+       * @param  {integer=} params.maxResults - The maximum number of items to include in the response, used for paging. The maximum supported value is 1000.
        * @param  {string=} params.orderBy - An SQL-like order by clause used to sort results. If this parameter is not included, the order of features is undefined.
        * @param  {string=} params.pageToken - The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param  {string=} params.select - A SQL-like projection clause used to specify returned properties. If this parameter is not included, all properties are returned.
@@ -1947,7 +2243,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/features',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/features',
             method: 'GET'
           },
           params: params,
@@ -1982,11 +2278,11 @@ function Mapsengine(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/files',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/files',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/tables/' + params.id + '/files',
+          mediaUrl: 'https://www.googleapis.com/upload/mapsengine/exp2/tables/{id}/files',
           requiredParams: ['id', 'filename'],
           pathParams: ['id'],
           context: self
@@ -2016,7 +2312,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/parents',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/parents',
             method: 'GET'
           },
           params: params,
@@ -2032,11 +2328,40 @@ function Mapsengine(options) {
     permissions: {
 
       /**
-       * mapsengine.tables.permissions.batchInsert
+       * mapsengine.tables.permissions.batchDelete
+       *
+       * @desc Remove permission entries from an already existing asset.
+       *
+       * @alias mapsengine.tables.permissions.batchDelete
+       * @memberOf! mapsengine(exp2)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.id - The ID of the asset from which permissions will be removed.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/permissions/batchDelete',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['id'],
+          pathParams: ['id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * mapsengine.tables.permissions.batchUpdate
        *
        * @desc Add or update permission entries to an already existing asset.  An asset can hold up to 20 different permission entries. Each batchInsert request is atomic.
        *
-       * @alias mapsengine.tables.permissions.batchInsert
+       * @alias mapsengine.tables.permissions.batchUpdate
        * @memberOf! mapsengine(exp2)
        *
        * @param  {object} params - Parameters for request
@@ -2045,10 +2370,10 @@ function Mapsengine(options) {
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      batchInsert: function(params, callback) {
+      batchUpdate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions/batchInsert',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/permissions/batchUpdate',
             method: 'POST'
           },
           params: params,
@@ -2076,7 +2401,7 @@ function Mapsengine(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mapsengine/exp2/tables/' + params.id + '/permissions',
+            url: 'https://www.googleapis.com/mapsengine/exp2/tables/{id}/permissions',
             method: 'GET'
           },
           params: params,

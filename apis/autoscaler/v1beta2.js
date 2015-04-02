@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Compute Engine Autoscaler API
@@ -54,7 +55,7 @@ function Autoscaler(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'DELETE'
         },
         params: params,
@@ -84,7 +85,7 @@ function Autoscaler(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'GET'
         },
         params: params,
@@ -114,7 +115,7 @@ function Autoscaler(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers',
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers',
           method: 'POST'
         },
         params: params,
@@ -146,7 +147,7 @@ function Autoscaler(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers',
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers',
           method: 'GET'
         },
         params: params,
@@ -177,7 +178,7 @@ function Autoscaler(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'PATCH'
         },
         params: params,
@@ -208,7 +209,7 @@ function Autoscaler(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/' + params.project + '/zones/' + params.zone + '/autoscalers/' + params.autoscaler,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'PUT'
         },
         params: params,
@@ -242,7 +243,7 @@ function Autoscaler(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations/{operation}',
           method: 'DELETE'
         },
         params: params,
@@ -272,7 +273,7 @@ function Autoscaler(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations/' + params.operation,
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
         },
         params: params,
@@ -304,12 +305,47 @@ function Autoscaler(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/autoscaler/v1beta2/' + params.project + '/zones/' + params.zone + '/operations',
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones/{zone}/operations',
           method: 'GET'
         },
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.zones = {
+
+    /**
+     * autoscaler.zones.list
+     *
+     *
+     *
+     * @alias autoscaler.zones.list
+     * @memberOf! autoscaler(v1beta2)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.filter -
+     * @param  {integer=} params.maxResults -
+     * @param  {string=} params.pageToken -
+     * @param  {string} params.project -
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/autoscaler/v1beta2/{project}/zones',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
         context: self
       };
 

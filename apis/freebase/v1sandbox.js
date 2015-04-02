@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Freebase Search
@@ -59,6 +60,8 @@ function Freebase(options) {
         method: 'GET'
       },
       params: params,
+      requiredParams: [],
+      pathParams: [],
       context: self
     };
 
@@ -107,6 +110,8 @@ function Freebase(options) {
         method: 'GET'
       },
       params: params,
+      requiredParams: [],
+      pathParams: [],
       context: self
     };
 

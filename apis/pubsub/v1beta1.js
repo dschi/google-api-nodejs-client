@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Cloud Pub/Sub API
+ * Google Cloud Pub/Sub API
  *
  * @classdesc Provides reliable, many-to-many, asynchronous messaging between applications.
  * @namespace pubsub
@@ -56,6 +57,8 @@ function Pubsub(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -65,7 +68,7 @@ function Pubsub(options) {
     /**
      * pubsub.subscriptions.create
      *
-     * @desc Creates a subscription on a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND.
+     * @desc Creates a subscription on a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND.  If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
      *
      * @alias pubsub.subscriptions.create
      * @memberOf! pubsub(v1beta1)
@@ -82,6 +85,8 @@ function Pubsub(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -104,7 +109,7 @@ function Pubsub(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/' + params.subscription,
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/{subscription}',
           method: 'DELETE'
         },
         params: params,
@@ -132,7 +137,7 @@ function Pubsub(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/' + params.subscription,
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/{subscription}',
           method: 'GET'
         },
         params: params,
@@ -166,6 +171,8 @@ function Pubsub(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -192,6 +199,8 @@ function Pubsub(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -201,7 +210,7 @@ function Pubsub(options) {
     /**
      * pubsub.subscriptions.modifyPushConfig
      *
-     * @desc Modifies the PushConfig for a specified subscription. This method can be used to suspend the flow of messages to an end point by clearing the PushConfig field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
+     * @desc Modifies the PushConfig for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the PushConfig field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
      *
      * @alias pubsub.subscriptions.modifyPushConfig
      * @memberOf! pubsub(v1beta1)
@@ -218,6 +227,8 @@ function Pubsub(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -244,6 +255,36 @@ function Pubsub(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.subscriptions.pullBatch
+     *
+     * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The system is free to return UNAVAILABLE if there are too many pull requests outstanding for the given subscription.
+     *
+     * @alias pubsub.subscriptions.pullBatch
+     * @memberOf! pubsub(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    pullBatch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/subscriptions/pullBatch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -274,6 +315,8 @@ function Pubsub(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -296,7 +339,7 @@ function Pubsub(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/' + params.topic,
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/{topic}',
           method: 'DELETE'
         },
         params: params,
@@ -324,7 +367,7 @@ function Pubsub(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/' + params.topic,
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/{topic}',
           method: 'GET'
         },
         params: params,
@@ -358,6 +401,8 @@ function Pubsub(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -384,6 +429,36 @@ function Pubsub(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * pubsub.topics.publishBatch
+     *
+     * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
+     *
+     * @alias pubsub.topics.publishBatch
+     * @memberOf! pubsub(v1beta1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    publishBatch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/pubsub/v1beta1/topics/publishBatch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

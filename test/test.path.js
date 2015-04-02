@@ -18,7 +18,7 @@
 
 var assert = require('assert');
 var googleapis = require('../lib/googleapis.js');
-var google, drive, authClient, OAuth2;
+var google, drive;
 
 describe('Path params', function() {
 
@@ -37,14 +37,21 @@ describe('Path params', function() {
   });
 
   it('should return an err object if not included and required', function(done) {
-    var req = drive.files.get({}, function(err, resp) {
+    drive.files.get({}, function(err) {
       assert.notEqual(err, null);
       done();
     });
   });
 
+  it('should be mentioned in err.message when missing', function (done) {
+    drive.files.get({}, function(err) {
+      assert.notEqual(err.message.indexOf('fileId'), -1, 'Missing param not mentioned in error');
+      done();
+    });
+  });
+
   it('should return null response object if not included and required', function(done) {
-    var req = drive.files.get({}, function(err, resp) {
+    drive.files.get({}, function(err, resp) {
       assert.equal(resp, null);
       done();
     });
@@ -79,6 +86,11 @@ describe('Path params', function() {
   it('should be put in URL of pathname', function() {
     var req = drive.files.get({ fileId: '123abc' }, noop);
     assert.equal(req.uri.pathname, '/drive/v2/files/123abc');
+  });
+
+  it('should be urlencoded', function () {
+    var req = drive.files.get({ fileId: 'p@ram' }, noop);
+    assert.equal(req.uri.path.split('/').pop(), 'p%40ram');
   });
 
   it('should keep query params null if only path params', function() {

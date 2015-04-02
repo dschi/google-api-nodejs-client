@@ -20,13 +20,15 @@ var assert = require('assert');
 var fs = require('fs');
 var googleapis = require('../lib/googleapis.js');
 
+function noop() {}
+
 describe('Clients', function() {
 
-  it('should create request helpers according to the resource on discovery API response', function() {
-    var plus = googleapis.plus('v1');
-    assert.equal(typeof plus.people.get, 'function');
-    assert.equal(typeof plus.activities.search, 'function');
-    assert.equal(typeof plus.comments.list, 'function');
+  it('should create request helpers according to resource on discovery API response', function() {
+      var plus = googleapis.plus('v1');
+      assert.equal(typeof plus.people.get, 'function');
+      assert.equal(typeof plus.activities.search, 'function');
+      assert.equal(typeof plus.comments.list, 'function');
   });
 
   it('should be able to gen top level methods', function() {
@@ -51,10 +53,14 @@ describe('Clients', function() {
   it('should be able to require all api files without error', function() {
     function getFiles(dir, files_) {
       files_ = files_ || [];
-      if (typeof files_ === 'undefined') files_ = [];
+      if (typeof files_ === 'undefined') {
+        files_ = [];
+      }
       var files = fs.readdirSync(dir);
       for (var i in files) {
-          if (!files.hasOwnProperty(i)) continue;
+          if (!files.hasOwnProperty(i)) {
+            continue;
+          }
           var name = dir + '/' + files[i];
           if (fs.statSync(name).isDirectory()) {
               getFiles(name, files_);
@@ -69,8 +75,47 @@ describe('Clients', function() {
 
     assert.doesNotThrow(function() {
       for (var i in api_files) {
-        var obj = require(api_files[i]);
+        require(api_files[i]);
       }
     });
+  });
+
+  it('should support default params', function() {
+    var store = googleapis.datastore({ version: 'v1beta2', params: { myParam: '123' } });
+    var req = store.datasets.lookup({ datasetId: '123' }, noop);
+    // If the default param handling is broken, query might be undefined, thus concealing the
+    // assertion message with some generic "cannot call .indexOf of undefined"
+    var query = req.uri.query || '';
+
+    assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
+  });
+
+  it('should allow default params to be overriden per-request', function() {
+    var store = googleapis.datastore({ version: 'v1beta2', params: { myParam: '123' } });
+    // Override the default datasetId param for this particular API call
+    var req = store.datasets.lookup({ datasetId: '123', myParam: '456' }, noop);
+    // If the default param handling is broken, query might be undefined, thus concealing the
+    // assertion message with some generic "cannot call .indexOf of undefined"
+    var query = req.uri.query || '';
+
+    assert.notEqual(query.indexOf('myParam=456'), -1, 'Default param not found in query');
+  });
+
+  it('should include default params when only callback is provided to API call', function() {
+    var store = googleapis.datastore({
+      version: 'v1beta2',
+      params: {
+        datasetId: '123', // We must set this here - it is a required param
+        myParam: '123'
+      }
+    });
+
+    // No params given - only callback
+    var req = store.datasets.lookup(noop);
+    // If the default param handling is broken, req or query might be undefined, thus concealing the
+    // assertion message with some generic "cannot call .indexOf of undefined"
+    var query = (req && req.uri.query) || '';
+
+    assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
   });
 });

@@ -52,11 +52,21 @@ describe('Options', function() {
     assert.equal(req.hello, 'changed');
   });
 
+  it('should support global request params', function() {
+    google.options({ params: { myParam: '123' } });
+    var req = drive.files.get({ fileId: '123' }, noop);
+    // If the default param handling is broken, query might be undefined, thus concealing the
+    // assertion message with some generic "cannot call .indexOf of undefined"
+    var query = req.uri.query || '';
+
+    assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
+  });
+
   it('should promote auth apikey options on request basis', function() {
     google.options({ auth: 'apikey1' });
     var drive = google.drive({ version: 'v2', auth: 'apikey2' });
     var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, noop);
-    assert.equal(req.url.query, 'key=apikey3');
+    assert.equal(req.uri.query, 'key=apikey3');
   });
 
   it('should apply google options to request object like proxy', function() {
@@ -82,6 +92,6 @@ describe('Options', function() {
     var req = drive.files.get({ auth: authClient, fileId: 'woot' }, noop);
     assert.equal(req.proxy.host, 'proxy.example.com');
     assert.equal(req.proxy.protocol, 'http:');
-    assert.equal(req.headers['Authorization'], 'Bearer abc');
+    assert.equal(req.headers.Authorization, 'Bearer abc');
   });
 });

@@ -29,13 +29,13 @@
 {% if globalmethods %}this.{{ mname }} ={% else %}{{ mname }}:{% endif %} function(params, callback) {
   var parameters = {
     options: {
-      url: {{ (basePath + m.path)|buildurl }},
+      url: {{ (rootUrl + servicePath + m.path)|buildurl }},
       method: '{{ m.httpMethod }}'
     },
     params: params,
-    {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ m.mediaUpload.protocols.simple.path|buildurl }},{%- endif -%}
-    {%- if m.parameterOrder.length -%}requiredParams: ['{{ m.parameterOrder|join("', '")|safe }}'],{%- endif -%}
-    {%- if pathParams.length -%}pathParams: ['{{ pathParams|join("', '")|safe }}'],{%- endif -%}
+    {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ [rootUrl, m.mediaUpload.protocols.simple.path]|join('')|buildurl }},{%- endif -%}
+    requiredParams: [{%- if m.parameterOrder.length -%}'{{ m.parameterOrder|join("', '")|safe }}'{%- endif -%}],
+    pathParams: [{%- if pathParams.length -%}'{{ pathParams|join("', '")|safe }}'{%- endif -%}],
     context: self
   };
 

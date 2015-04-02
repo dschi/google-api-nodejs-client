@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * APIs Discovery Service
@@ -53,7 +54,7 @@ function Discovery(options) {
     getRest: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/discovery/v1/apis/' + params.api + '/' + params.version + '/rest',
+          url: 'https://www.googleapis.com/discovery/v1/apis/{api}/{version}/rest',
           method: 'GET'
         },
         params: params,
@@ -86,6 +87,8 @@ function Discovery(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

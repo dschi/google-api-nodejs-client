@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Prediction API
@@ -54,7 +55,7 @@ function Prediction(options) {
     predict: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.6/projects/' + params.project + '/hostedmodels/' + params.hostedModelName + '/predict',
+          url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
         },
         params: params,
@@ -87,7 +88,7 @@ function Prediction(options) {
     analyze: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.6/projects/' + params.project + '/trainedmodels/' + params.id + '/analyze',
+          url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}/analyze',
           method: 'GET'
         },
         params: params,
@@ -116,7 +117,7 @@ function Prediction(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.6/projects/' + params.project + '/trainedmodels/' + params.id,
+          url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -145,7 +146,7 @@ function Prediction(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.6/projects/' + params.project + '/trainedmodels/' + params.id,
+          url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}',
           method: 'GET'
         },
         params: params,
@@ -174,7 +175,7 @@ function Prediction(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.6/projects/' + params.project + '/trainedmodels',
+          url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels',
           method: 'POST'
         },
         params: params,
@@ -204,7 +205,7 @@ function Prediction(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.6/projects/' + params.project + '/trainedmodels/list',
+          url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/list',
           method: 'GET'
         },
         params: params,
@@ -234,7 +235,7 @@ function Prediction(options) {
     predict: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.6/projects/' + params.project + '/trainedmodels/' + params.id + '/predict',
+          url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}/predict',
           method: 'POST'
         },
         params: params,
@@ -264,7 +265,7 @@ function Prediction(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.6/projects/' + params.project + '/trainedmodels/' + params.id,
+          url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}',
           method: 'PUT'
         },
         params: params,

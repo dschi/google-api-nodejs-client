@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Calendar API
@@ -53,7 +54,7 @@ function Calendar(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'DELETE'
         },
         params: params,
@@ -82,7 +83,7 @@ function Calendar(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'GET'
         },
         params: params,
@@ -111,7 +112,7 @@ function Calendar(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
           method: 'POST'
         },
         params: params,
@@ -143,7 +144,7 @@ function Calendar(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
           method: 'GET'
         },
         params: params,
@@ -173,7 +174,7 @@ function Calendar(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'PATCH'
         },
         params: params,
@@ -203,7 +204,7 @@ function Calendar(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/' + params.ruleId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'PUT'
         },
         params: params,
@@ -236,7 +237,7 @@ function Calendar(options) {
     watch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/acl/watch',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/watch',
           method: 'POST'
         },
         params: params,
@@ -268,7 +269,7 @@ function Calendar(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'DELETE'
         },
         params: params,
@@ -296,7 +297,7 @@ function Calendar(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'GET'
         },
         params: params,
@@ -329,6 +330,8 @@ function Calendar(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -360,6 +363,8 @@ function Calendar(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -384,7 +389,7 @@ function Calendar(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'PATCH'
         },
         params: params,
@@ -414,7 +419,7 @@ function Calendar(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' + params.calendarId,
+          url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'PUT'
         },
         params: params,
@@ -452,6 +457,8 @@ function Calendar(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -465,7 +472,7 @@ function Calendar(options) {
     /**
      * calendar.calendars.clear
      *
-     * @desc Clears a primary calendar. This operation deletes all data associated with the primary calendar of an account and cannot be undone.
+     * @desc Clears a primary calendar. This operation deletes all events associated with the primary calendar of an account.
      *
      * @alias calendar.calendars.clear
      * @memberOf! calendar(v3)
@@ -478,7 +485,7 @@ function Calendar(options) {
     clear: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/clear',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/clear',
           method: 'POST'
         },
         params: params,
@@ -493,7 +500,7 @@ function Calendar(options) {
     /**
      * calendar.calendars.delete
      *
-     * @desc Deletes a secondary calendar.
+     * @desc Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
      *
      * @alias calendar.calendars.delete
      * @memberOf! calendar(v3)
@@ -506,7 +513,7 @@ function Calendar(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'DELETE'
         },
         params: params,
@@ -534,7 +541,7 @@ function Calendar(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'GET'
         },
         params: params,
@@ -566,6 +573,8 @@ function Calendar(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -589,7 +598,7 @@ function Calendar(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'PATCH'
         },
         params: params,
@@ -618,7 +627,7 @@ function Calendar(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'PUT'
         },
         params: params,
@@ -654,6 +663,8 @@ function Calendar(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -683,6 +694,8 @@ function Calendar(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -711,7 +724,7 @@ function Calendar(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'DELETE'
         },
         params: params,
@@ -743,7 +756,7 @@ function Calendar(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'GET'
         },
         params: params,
@@ -772,7 +785,7 @@ function Calendar(options) {
     import: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/import',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/import',
           method: 'POST'
         },
         params: params,
@@ -803,7 +816,7 @@ function Calendar(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
           method: 'POST'
         },
         params: params,
@@ -841,7 +854,7 @@ function Calendar(options) {
     instances: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId + '/instances',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/instances',
           method: 'GET'
         },
         params: params,
@@ -886,7 +899,7 @@ function Calendar(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
           method: 'GET'
         },
         params: params,
@@ -917,7 +930,7 @@ function Calendar(options) {
     move: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId + '/move',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/move',
           method: 'POST'
         },
         params: params,
@@ -950,7 +963,7 @@ function Calendar(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'PATCH'
         },
         params: params,
@@ -980,7 +993,7 @@ function Calendar(options) {
     quickAdd: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/quickAdd',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/quickAdd',
           method: 'POST'
         },
         params: params,
@@ -1013,7 +1026,7 @@ function Calendar(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/' + params.eventId,
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'PUT'
         },
         params: params,
@@ -1059,7 +1072,7 @@ function Calendar(options) {
     watch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/calendars/' + params.calendarId + '/events/watch',
+          url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/watch',
           method: 'POST'
         },
         params: params,
@@ -1095,6 +1108,8 @@ function Calendar(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1121,7 +1136,7 @@ function Calendar(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/calendar/v3/users/me/settings/' + params.setting,
+          url: 'https://www.googleapis.com/calendar/v3/users/me/settings/{setting}',
           method: 'GET'
         },
         params: params,
@@ -1155,6 +1170,8 @@ function Calendar(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1184,6 +1201,8 @@ function Calendar(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

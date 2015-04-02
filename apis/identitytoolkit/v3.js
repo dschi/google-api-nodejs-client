@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Identity Toolkit API
@@ -56,6 +57,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -82,6 +85,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -108,6 +113,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -134,6 +141,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -160,6 +169,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -185,6 +196,8 @@ function Identitytoolkit(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -194,7 +207,7 @@ function Identitytoolkit(options) {
     /**
      * identitytoolkit.relyingparty.resetPassword
      *
-     * @desc Set account info for a user.
+     * @desc Reset password for a user.
      *
      * @alias identitytoolkit.relyingparty.resetPassword
      * @memberOf! identitytoolkit(v3)
@@ -211,6 +224,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -237,6 +252,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -263,6 +280,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -289,6 +308,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -315,6 +336,8 @@ function Identitytoolkit(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Drive API
@@ -58,6 +59,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -84,7 +87,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/apps/' + params.appId,
+          url: 'https://www.googleapis.com/drive/v2/apps/{appId}',
           method: 'GET'
         },
         params: params,
@@ -118,6 +121,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -144,7 +149,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/changes/' + params.changeId,
+          url: 'https://www.googleapis.com/drive/v2/changes/{changeId}',
           method: 'GET'
         },
         params: params,
@@ -180,6 +185,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -211,6 +218,8 @@ function Drive(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -241,6 +250,8 @@ function Drive(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -268,7 +279,7 @@ function Drive(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId,
+          url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
           method: 'DELETE'
         },
         params: params,
@@ -297,7 +308,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children/' + params.childId,
+          url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
           method: 'GET'
         },
         params: params,
@@ -326,7 +337,7 @@ function Drive(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children',
+          url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
           method: 'POST'
         },
         params: params,
@@ -357,7 +368,7 @@ function Drive(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.folderId + '/children',
+          url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
           method: 'GET'
         },
         params: params,
@@ -390,7 +401,7 @@ function Drive(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'DELETE'
         },
         params: params,
@@ -420,7 +431,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'GET'
         },
         params: params,
@@ -449,7 +460,7 @@ function Drive(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
           method: 'POST'
         },
         params: params,
@@ -481,7 +492,7 @@ function Drive(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
           method: 'GET'
         },
         params: params,
@@ -511,7 +522,7 @@ function Drive(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'PATCH'
         },
         params: params,
@@ -541,7 +552,7 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'PUT'
         },
         params: params,
@@ -581,7 +592,7 @@ function Drive(options) {
     copy: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/copy',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/copy',
           method: 'POST'
         },
         params: params,
@@ -596,7 +607,7 @@ function Drive(options) {
     /**
      * drive.files.delete
      *
-     * @desc Permanently deletes a file by ID. Skips the trash.
+     * @desc Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file.
      *
      * @alias drive.files.delete
      * @memberOf! drive(v2)
@@ -609,7 +620,7 @@ function Drive(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'DELETE'
         },
         params: params,
@@ -640,6 +651,8 @@ function Drive(options) {
           method: 'DELETE'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -655,6 +668,7 @@ function Drive(options) {
      * @memberOf! drive(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
@@ -664,7 +678,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'GET'
         },
         params: params,
@@ -708,6 +722,8 @@ function Drive(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files',
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -738,6 +754,8 @@ function Drive(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -756,7 +774,7 @@ function Drive(options) {
      * @param  {string=} params.addParents - Comma-separated list of parent IDs to add.
      * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
      * @param  {string} params.fileId - The ID of the file to update.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
+     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
      * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
@@ -773,7 +791,7 @@ function Drive(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'PATCH'
         },
         params: params,
@@ -801,7 +819,7 @@ function Drive(options) {
     touch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/touch',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/touch',
           method: 'POST'
         },
         params: params,
@@ -829,7 +847,7 @@ function Drive(options) {
     trash: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/trash',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/trash',
           method: 'POST'
         },
         params: params,
@@ -857,7 +875,7 @@ function Drive(options) {
     untrash: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/untrash',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/untrash',
           method: 'POST'
         },
         params: params,
@@ -881,7 +899,7 @@ function Drive(options) {
      * @param  {string=} params.addParents - Comma-separated list of parent IDs to add.
      * @param  {boolean=} params.convert - Whether to convert this file to the corresponding Google Docs format.
      * @param  {string} params.fileId - The ID of the file to update.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
+     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.ocr - Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param  {string=} params.ocrLanguage - If ocr is true, hints at the language to use. Valid values are ISO 639-1 codes.
      * @param  {boolean=} params.pinned - Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
@@ -901,11 +919,11 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'PUT'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId,
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/{fileId}',
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
@@ -923,6 +941,7 @@ function Drive(options) {
      * @memberOf! drive(v2)
      *
      * @param  {object} params - Parameters for request
+     * @param  {boolean=} params.acknowledgeAbuse - Whether the user is acknowledging the risk of downloading known malware or other abusive files.
      * @param  {string} params.fileId - The ID for the file in question.
      * @param  {string=} params.projection - This parameter is deprecated and has no function.
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully retrieving the file.
@@ -933,7 +952,7 @@ function Drive(options) {
     watch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/watch',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/watch',
           method: 'POST'
         },
         params: params,
@@ -966,7 +985,7 @@ function Drive(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
           method: 'DELETE'
         },
         params: params,
@@ -995,7 +1014,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents/' + params.parentId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
           method: 'GET'
         },
         params: params,
@@ -1024,7 +1043,7 @@ function Drive(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
           method: 'POST'
         },
         params: params,
@@ -1052,7 +1071,7 @@ function Drive(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/parents',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
           method: 'GET'
         },
         params: params,
@@ -1085,7 +1104,7 @@ function Drive(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'DELETE'
         },
         params: params,
@@ -1114,7 +1133,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'GET'
         },
         params: params,
@@ -1142,7 +1161,7 @@ function Drive(options) {
     getIdForEmail: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/permissionIds/' + params.email,
+          url: 'https://www.googleapis.com/drive/v2/permissionIds/{email}',
           method: 'GET'
         },
         params: params,
@@ -1173,7 +1192,7 @@ function Drive(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
           method: 'POST'
         },
         params: params,
@@ -1201,7 +1220,7 @@ function Drive(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
           method: 'GET'
         },
         params: params,
@@ -1224,7 +1243,7 @@ function Drive(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.fileId - The ID for the file.
      * @param  {string} params.permissionId - The ID for the permission.
-     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' should also downgrade the current owners to writers.
+     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1232,7 +1251,7 @@ function Drive(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'PATCH'
         },
         params: params,
@@ -1255,7 +1274,7 @@ function Drive(options) {
      * @param  {object} params - Parameters for request
      * @param  {string} params.fileId - The ID for the file.
      * @param  {string} params.permissionId - The ID for the permission.
-     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' should also downgrade the current owners to writers.
+     * @param  {boolean=} params.transferOwnership - Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1263,7 +1282,7 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/permissions/' + params.permissionId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'PUT'
         },
         params: params,
@@ -1297,7 +1316,7 @@ function Drive(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'DELETE'
         },
         params: params,
@@ -1327,7 +1346,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'GET'
         },
         params: params,
@@ -1356,7 +1375,7 @@ function Drive(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
           method: 'POST'
         },
         params: params,
@@ -1384,7 +1403,7 @@ function Drive(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
           method: 'GET'
         },
         params: params,
@@ -1415,7 +1434,7 @@ function Drive(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'PATCH'
         },
         params: params,
@@ -1446,7 +1465,7 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/properties/' + params.propertyKey,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'PUT'
         },
         params: params,
@@ -1479,7 +1498,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/realtime',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
           method: 'GET'
         },
         params: params,
@@ -1511,11 +1530,11 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/realtime',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
           method: 'PUT'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/' + params.fileId + '/realtime',
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/{fileId}/realtime',
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
         context: self
@@ -1546,7 +1565,7 @@ function Drive(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'DELETE'
         },
         params: params,
@@ -1577,7 +1596,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'GET'
         },
         params: params,
@@ -1607,7 +1626,7 @@ function Drive(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
           method: 'POST'
         },
         params: params,
@@ -1639,7 +1658,7 @@ function Drive(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
           method: 'GET'
         },
         params: params,
@@ -1670,7 +1689,7 @@ function Drive(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'PATCH'
         },
         params: params,
@@ -1701,7 +1720,7 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/comments/' + params.commentId + '/replies/' + params.replyId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'PUT'
         },
         params: params,
@@ -1734,7 +1753,7 @@ function Drive(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'DELETE'
         },
         params: params,
@@ -1763,7 +1782,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'GET'
         },
         params: params,
@@ -1791,7 +1810,7 @@ function Drive(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions',
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions',
           method: 'GET'
         },
         params: params,
@@ -1821,7 +1840,7 @@ function Drive(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'PATCH'
         },
         params: params,
@@ -1851,7 +1870,7 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v2/files/' + params.fileId + '/revisions/' + params.revisionId,
+          url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'PUT'
         },
         params: params,

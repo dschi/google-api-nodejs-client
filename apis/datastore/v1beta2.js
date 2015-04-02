@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Cloud Datastore API
@@ -53,7 +54,7 @@ function Datastore(options) {
     allocateIds: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/' + params.datasetId + '/allocateIds',
+          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/{datasetId}/allocateIds',
           method: 'POST'
         },
         params: params,
@@ -82,7 +83,7 @@ function Datastore(options) {
     beginTransaction: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/' + params.datasetId + '/beginTransaction',
+          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/{datasetId}/beginTransaction',
           method: 'POST'
         },
         params: params,
@@ -111,7 +112,7 @@ function Datastore(options) {
     commit: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/' + params.datasetId + '/commit',
+          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/{datasetId}/commit',
           method: 'POST'
         },
         params: params,
@@ -140,7 +141,7 @@ function Datastore(options) {
     lookup: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/' + params.datasetId + '/lookup',
+          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/{datasetId}/lookup',
           method: 'POST'
         },
         params: params,
@@ -169,7 +170,7 @@ function Datastore(options) {
     rollback: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/' + params.datasetId + '/rollback',
+          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/{datasetId}/rollback',
           method: 'POST'
         },
         params: params,
@@ -198,7 +199,7 @@ function Datastore(options) {
     runQuery: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/' + params.datasetId + '/runQuery',
+          url: 'https://www.googleapis.com/datastore/v1beta2/datasets/{datasetId}/runQuery',
           method: 'POST'
         },
         params: params,

@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Analytics API
@@ -66,6 +67,7 @@ function Analytics(options) {
         },
         params: params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+        pathParams: [],
         context: self
       };
 
@@ -99,6 +101,8 @@ function Analytics(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -128,7 +132,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'GET'
           },
           params: params,
@@ -162,7 +166,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'GET'
           },
           params: params,
@@ -198,6 +202,8 @@ function Analytics(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -225,7 +231,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/' + params.accountId + '/webproperties',
+            url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties',
             method: 'GET'
           },
           params: params,

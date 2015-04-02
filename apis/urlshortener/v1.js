@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * URL Shortener API
@@ -58,6 +59,7 @@ function Urlshortener(options) {
         },
         params: params,
         requiredParams: ['shortUrl'],
+        pathParams: [],
         context: self
       };
 
@@ -84,6 +86,8 @@ function Urlshortener(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -111,6 +115,8 @@ function Urlshortener(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

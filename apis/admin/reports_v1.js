@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Admin Reports API
@@ -61,7 +62,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/' + params.userKey + '/applications/' + params.applicationName,
+          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}',
           method: 'GET'
         },
         params: params,
@@ -99,7 +100,7 @@ function Admin(options) {
     watch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/' + params.userKey + '/applications/' + params.applicationName + '/watch',
+          url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch',
           method: 'POST'
         },
         params: params,
@@ -131,10 +132,12 @@ function Admin(options) {
     stop: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1//admin/reports_v1/channels/stop',
+          url: 'https://www.googleapis.com/admin/reports/v1/admin/reports_v1/channels/stop',
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -164,7 +167,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/' + params.date,
+          url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/{date}',
           method: 'GET'
         },
         params: params,
@@ -202,7 +205,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/reports/v1/usage/users/' + params.userKey + '/dates/' + params.date,
+          url: 'https://www.googleapis.com/admin/reports/v1/usage/users/{userKey}/dates/{date}',
           method: 'GET'
         },
         params: params,

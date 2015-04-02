@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * DoubleClick Search API
@@ -62,7 +63,7 @@ function Doubleclicksearch(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/' + params.agencyId + '/advertiser/' + params.advertiserId + '/engine/' + params.engineAccountId + '/conversion',
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion',
           method: 'GET'
         },
         params: params,
@@ -94,6 +95,8 @@ function Doubleclicksearch(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -128,6 +131,7 @@ function Doubleclicksearch(options) {
         },
         params: params,
         requiredParams: ['advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount', 'startDate', 'startRow'],
+        pathParams: [],
         context: self
       };
 
@@ -154,6 +158,8 @@ function Doubleclicksearch(options) {
           method: 'PUT'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -180,6 +186,8 @@ function Doubleclicksearch(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -210,6 +218,8 @@ function Doubleclicksearch(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -232,7 +242,7 @@ function Doubleclicksearch(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/' + params.reportId,
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}',
           method: 'GET'
         },
         params: params,
@@ -261,7 +271,7 @@ function Doubleclicksearch(options) {
     getFile: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/' + params.reportId + '/files/' + params.reportFragment,
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}',
           method: 'GET'
         },
         params: params,
@@ -293,6 +303,8 @@ function Doubleclicksearch(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -320,7 +332,7 @@ function Doubleclicksearch(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/' + params.agencyId + '/advertiser/' + params.advertiserId + '/savedcolumns',
+          url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns',
           method: 'GET'
         },
         params: params,

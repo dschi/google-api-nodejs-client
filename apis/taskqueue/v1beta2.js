@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * TaskQueue API
@@ -54,7 +55,7 @@ function Taskqueue(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue,
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}',
           method: 'GET'
         },
         params: params,
@@ -88,7 +89,7 @@ function Taskqueue(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'DELETE'
         },
         params: params,
@@ -118,7 +119,7 @@ function Taskqueue(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'GET'
         },
         params: params,
@@ -148,7 +149,7 @@ function Taskqueue(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks',
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks',
           method: 'POST'
         },
         params: params,
@@ -181,7 +182,7 @@ function Taskqueue(options) {
     lease: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/lease',
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/lease',
           method: 'POST'
         },
         params: params,
@@ -210,7 +211,7 @@ function Taskqueue(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks',
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks',
           method: 'GET'
         },
         params: params,
@@ -242,7 +243,7 @@ function Taskqueue(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'PATCH'
         },
         params: params,
@@ -274,7 +275,7 @@ function Taskqueue(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/' + params.project + '/taskqueues/' + params.taskqueue + '/tasks/' + params.task,
+          url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'POST'
         },
         params: params,

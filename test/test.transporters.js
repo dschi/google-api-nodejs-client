@@ -17,30 +17,13 @@
 'use strict';
 
 var assert = require('assert');
-var googleapis = require('../lib/googleapis.js');
-var DefaultTransporter = require('../lib/transporters');
+var nock = require('nock');
+
+nock.disableNetConnect();
 
 describe('Transporters', function() {
 
   function noop() {}
-
-  var defaultUserAgentRE = 'google-api-nodejs-client/\\d+\.\\d+\.\\d+';
-  var transporter = new DefaultTransporter();
-
-  it('should set default client user agent if none is set', function() {
-    var opts = transporter.configure({});
-    var re = new RegExp(defaultUserAgentRE);
-    assert(re.test(opts.headers['User-Agent']));
-  });
-
-  it('should append default client user agent to the existing user agent', function() {
-    var applicationName = 'MyTestApplication-1.0';
-    var opts = transporter.configure({
-      headers: { 'User-Agent': applicationName }
-    });
-    var re = new RegExp(applicationName + ' ' + defaultUserAgentRE);
-    assert(re.test(opts.headers['User-Agent']));
-  });
 
   it('should automatically add content-type for POST requests', function() {
     var google = require('../lib/googleapis');
@@ -67,5 +50,105 @@ describe('Transporters', function() {
     }, noop);
     assert.equal(req.headers['content-type'], null);
     assert.equal(req.body, null);
+  });
+
+  it('should return errors within response body as instances of Error', function(done) {
+    var google = require('../lib/googleapis');
+    var drive = google.drive('v2');
+
+    var scope = nock('https://www.googleapis.com')
+      .get('/drive/v2/files?q=hello')
+      // Simulate an error returned via response body from Google's API endpoint
+      .reply(400, { error: { code: 400, message: 'Error!'} });
+
+    drive.files.list({ q: 'hello' }, function(err) {
+      assert(err instanceof Error);
+      assert.equal(err.message, 'Error!');
+      assert.equal(err.code, 400);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should return error message correctly when error is not an object', function(done) {
+    var google = require('../lib/googleapis');
+    var oauth2 = google.oauth2('v2');
+
+    var scope = nock('https://www.googleapis.com')
+      .post('/oauth2/v2/tokeninfo?access_token=hello')
+      // Simulate an error returned via response body from Google's tokeninfo endpoint
+      .reply(400, { error: 'invalid_grant', error_description: 'Code was already redeemed.' });
+
+    oauth2.tokeninfo({ access_token: 'hello' }, function(err) {
+      assert(err instanceof Error);
+      assert.equal(err.message, 'Code was already redeemed.');
+      assert.equal(err.type, 'invalid_grant');
+      assert.equal(err.code, 400);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should return 5xx responses as errors', function(done) {
+    var google = require('../lib/googleapis');
+    var scope = nock('https://www.googleapis.com')
+      .post('/urlshortener/v1/url')
+      .reply(500, 'There was an error!');
+    var urlshortener = google.urlshortener('v1');
+    var obj = { longUrl: 'http://google.com/' };
+    urlshortener.url.insert({ resource: obj }, function(err, result) {
+      assert(err instanceof Error);
+      assert.equal(err.code, 500);
+      assert.equal(err.message, 'There was an error!');
+      assert.equal(result, null);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should handle 5xx responses that include errors', function(done) {
+    var google = require('../lib/googleapis');
+    var scope = nock('https://www.googleapis.com')
+      .post('/urlshortener/v1/url')
+      .reply(500, { error: {message: 'There was an error!'}});
+    var urlshortener = google.urlshortener('v1');
+    var obj = { longUrl: 'http://google.com/' };
+    urlshortener.url.insert({ resource: obj }, function(err, result) {
+      assert(err instanceof Error);
+      assert.equal(err.code, 500);
+      assert.equal(err.message, 'There was an error!');
+      assert.equal(result, null);
+      scope.done();
+      done();
+    });
+  });
+
+  it('should handle a Backend Error', function(done) {
+    var google = require('../lib/googleapis');
+    var scope = nock('https://www.googleapis.com')
+      .post('/urlshortener/v1/url')
+      .reply(500, {
+        error: {
+         errors: [
+           {
+             domain: 'global',
+             reason: 'backendError',
+             message: 'Backend Error'
+           }
+         ],
+         code: 500,
+         message: 'Backend Error'
+       }
+      });
+    var urlshortener = google.urlshortener('v1');
+    var obj = { longUrl: 'http://google.com/' };
+    urlshortener.url.insert({ resource: obj }, function(err, result) {
+      assert(err instanceof Error);
+      assert.equal(err.code, 500);
+      assert.equal(err.message, 'Backend Error');
+      assert.equal(result, null);
+      scope.done();
+      done();
+    });
   });
 });

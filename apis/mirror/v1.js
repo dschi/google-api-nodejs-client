@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Mirror API
@@ -55,7 +56,7 @@ function Mirror(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/accounts/' + params.userToken + '/' + params.accountType + '/' + params.accountName,
+          url: 'https://www.googleapis.com/mirror/v1/accounts/{userToken}/{accountType}/{accountName}',
           method: 'POST'
         },
         params: params,
@@ -87,7 +88,7 @@ function Mirror(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -115,7 +116,7 @@ function Mirror(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
           method: 'GET'
         },
         params: params,
@@ -147,6 +148,8 @@ function Mirror(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -172,6 +175,8 @@ function Mirror(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -195,7 +200,7 @@ function Mirror(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -224,7 +229,7 @@ function Mirror(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/contacts/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/contacts/{id}',
           method: 'PUT'
         },
         params: params,
@@ -256,7 +261,7 @@ function Mirror(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/locations/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/locations/{id}',
           method: 'GET'
         },
         params: params,
@@ -287,6 +292,8 @@ function Mirror(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -313,7 +320,7 @@ function Mirror(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/settings/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/settings/{id}',
           method: 'GET'
         },
         params: params,
@@ -345,7 +352,7 @@ function Mirror(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/subscriptions/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/subscriptions/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -377,6 +384,8 @@ function Mirror(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -402,6 +411,8 @@ function Mirror(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -425,7 +436,7 @@ function Mirror(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/subscriptions/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/subscriptions/{id}',
           method: 'PUT'
         },
         params: params,
@@ -457,7 +468,7 @@ function Mirror(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -485,7 +496,7 @@ function Mirror(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
           method: 'GET'
         },
         params: params,
@@ -521,6 +532,8 @@ function Mirror(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline',
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -553,6 +566,8 @@ function Mirror(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -576,7 +591,7 @@ function Mirror(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -608,11 +623,11 @@ function Mirror(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.id,
+          url: 'https://www.googleapis.com/mirror/v1/timeline/{id}',
           method: 'PUT'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.id,
+        mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/{id}',
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self
@@ -640,7 +655,7 @@ function Mirror(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments/' + params.attachmentId,
+            url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments/{attachmentId}',
             method: 'DELETE'
           },
           params: params,
@@ -669,7 +684,7 @@ function Mirror(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments/' + params.attachmentId,
+            url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments/{attachmentId}',
             method: 'GET'
           },
           params: params,
@@ -700,11 +715,11 @@ function Mirror(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments',
+            url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/' + params.itemId + '/attachments',
+          mediaUrl: 'https://www.googleapis.com/upload/mirror/v1/timeline/{itemId}/attachments',
           requiredParams: ['itemId'],
           pathParams: ['itemId'],
           context: self
@@ -729,7 +744,7 @@ function Mirror(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/mirror/v1/timeline/' + params.itemId + '/attachments',
+            url: 'https://www.googleapis.com/mirror/v1/timeline/{itemId}/attachments',
             method: 'GET'
           },
           params: params,

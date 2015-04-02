@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Drive API
@@ -54,7 +55,7 @@ function Drive(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v1/files/' + params.id,
+          url: 'https://www.googleapis.com/drive/v1/files/{id}',
           method: 'GET'
         },
         params: params,
@@ -90,6 +91,8 @@ function Drive(options) {
         },
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files',
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -106,7 +109,7 @@ function Drive(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id for the file in question.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
+     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.updateModifiedDate - Controls updating the modified date of the file. If true, the modified date will be updated to the current time, regardless of whether other changes are being made. If false, the modified date will only be updated to the current time if other changes are also being made (changing the title, for example).
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
      * @param  {object} params.resource - Request body data
@@ -116,7 +119,7 @@ function Drive(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v1/files/' + params.id,
+          url: 'https://www.googleapis.com/drive/v1/files/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -138,7 +141,7 @@ function Drive(options) {
      *
      * @param  {object} params - Parameters for request
      * @param  {string} params.id - The id for the file in question.
-     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If not set or true, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
+     * @param  {boolean=} params.newRevision - Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous revisions are preserved (causing increased use of the user's data storage quota).
      * @param  {boolean=} params.updateModifiedDate - Controls updating the modified date of the file. If true, the modified date will be updated to the current time, regardless of whether other changes are being made. If false, the modified date will only be updated to the current time if other changes are also being made (changing the title, for example).
      * @param  {boolean=} params.updateViewedDate - Whether to update the view date after successfully updating the file.
      * @param  {object} params.resource - Media resource metadata
@@ -151,11 +154,11 @@ function Drive(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/drive/v1/files/' + params.id,
+          url: 'https://www.googleapis.com/drive/v1/files/{id}',
           method: 'PUT'
         },
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files/' + params.id,
+        mediaUrl: 'https://www.googleapis.com/upload/drive/v1/files/{id}',
         requiredParams: ['id'],
         pathParams: ['id'],
         context: self

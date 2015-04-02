@@ -16,7 +16,7 @@
 'use strict';
 
 var path = require('path');
-
+var util = require('util');
 /**
  * Return a Function that requires an API from the disk
  * @param  {String} filename Filename of API
@@ -37,16 +37,17 @@ function requireAPI(filename) {
       throw new Error('Argument error: Accepts only string or object');
     }
     try {
-      var Endpoint = require(__dirname + '/' + filename + '/' + path.basename(version));
+      var endpointPath = path.join(__dirname, filename, path.basename(version));
+      var Endpoint = require(endpointPath);
       var ep = new Endpoint(options);
       ep.google = this; // for drive.google.transporter
       return Object.freeze(ep); // create new & freeze
     }
     catch (e) {
-      console.log(e);
-      throw new Error('Error: Version \"' + version + '\" not found.');
+      throw new Error(util.format('Unable to load endpoint %s("%s"): %s',
+        filename, version, e.message));
     }
-  }
+  };
 }
 
 {%- set apisNames = items|getAPIs|uniq -%}

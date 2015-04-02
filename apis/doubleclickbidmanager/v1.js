@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * DoubleClick Bid Manager API
@@ -56,6 +57,8 @@ function Doubleclickbidmanager(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -82,6 +85,8 @@ function Doubleclickbidmanager(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -112,6 +117,8 @@ function Doubleclickbidmanager(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -134,7 +141,7 @@ function Doubleclickbidmanager(options) {
     deletequery: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'DELETE'
         },
         params: params,
@@ -162,7 +169,7 @@ function Doubleclickbidmanager(options) {
     getquery: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'GET'
         },
         params: params,
@@ -193,6 +200,8 @@ function Doubleclickbidmanager(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -216,7 +225,7 @@ function Doubleclickbidmanager(options) {
     runquery: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/' + params.queryId,
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'POST'
         },
         params: params,
@@ -248,7 +257,7 @@ function Doubleclickbidmanager(options) {
     listreports: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/' + params.queryId + '/reports',
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/{queryId}/reports',
           method: 'GET'
         },
         params: params,

@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Books API
@@ -54,7 +55,7 @@ function Books(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves/' + params.shelf,
+          url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}',
           method: 'GET'
         },
         params: params,
@@ -83,7 +84,7 @@ function Books(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves',
+          url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves',
           method: 'GET'
         },
         params: params,
@@ -118,7 +119,7 @@ function Books(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/users/' + params.userId + '/bookshelves/' + params.shelf + '/volumes',
+            url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}/volumes',
             method: 'GET'
           },
           params: params,
@@ -157,6 +158,8 @@ function Books(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -184,6 +187,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['volumeId'],
+        pathParams: [],
         context: self
       };
 
@@ -210,6 +214,40 @@ function Books(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.dictionary = {
+
+    /**
+     * books.dictionary.listOfflineMetadata
+     *
+     * @desc Returns a list of offline dictionary meatadata available
+     *
+     * @alias books.dictionary.listOfflineMetadata
+     * @memberOf! books(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.cpksver - The device/version ID from which to request the data.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listOfflineMetadata: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/dictionary/listOfflineMetadata',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['cpksver'],
+        pathParams: [],
         context: self
       };
 
@@ -239,7 +277,7 @@ function Books(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layersummary/' + params.summaryId,
+          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary/{summaryId}',
           method: 'GET'
         },
         params: params,
@@ -271,7 +309,7 @@ function Books(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layersummary',
+          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary',
           method: 'GET'
         },
         params: params,
@@ -310,7 +348,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/data/' + params.annotationDataId,
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}',
             method: 'GET'
           },
           params: params,
@@ -350,7 +388,7 @@ function Books(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/data',
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data',
             method: 'GET'
           },
           params: params,
@@ -385,7 +423,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId + '/annotations/' + params.annotationId,
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}',
             method: 'GET'
           },
           params: params,
@@ -427,7 +465,7 @@ function Books(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/layers/' + params.layerId,
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}',
             method: 'GET'
           },
           params: params,
@@ -442,6 +480,33 @@ function Books(options) {
   };
 
   this.myconfig = {
+
+    /**
+     * books.myconfig.getUserSettings
+     *
+     * @desc Gets the current settings for the user.
+     *
+     * @alias books.myconfig.getUserSettings
+     * @memberOf! books(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    getUserSettings: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/myconfig/getUserSettings',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * books.myconfig.releaseDownloadAccess
@@ -467,6 +532,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['volumeIds', 'cpksver'],
+        pathParams: [],
         context: self
       };
 
@@ -499,6 +565,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
+        pathParams: [],
         context: self
       };
 
@@ -532,6 +599,35 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['source', 'nonce', 'cpksver'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * books.myconfig.updateUserSettings
+     *
+     * @desc Sets the settings for the user. Unspecified sub-objects will retain the existing value.
+     *
+     * @alias books.myconfig.updateUserSettings
+     * @memberOf! books(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateUserSettings: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/myconfig/updateUserSettings',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -561,7 +657,7 @@ function Books(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'DELETE'
           },
           params: params,
@@ -590,7 +686,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'GET'
           },
           params: params,
@@ -611,6 +707,7 @@ function Books(options) {
        * @memberOf! books(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.country - ISO-3166-1 code to override the IP-based location.
        * @param  {boolean=} params.showOnlySummaryInResponse - Requests that only the summary of the specified layer be provided in the response.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {object} params.resource - Request body data
@@ -624,6 +721,8 @@ function Books(options) {
             method: 'POST'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -660,6 +759,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -688,6 +789,7 @@ function Books(options) {
           },
           params: params,
           requiredParams: ['layerIds', 'volumeId'],
+          pathParams: [],
           context: self
         };
 
@@ -712,7 +814,7 @@ function Books(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/' + params.annotationId,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'PUT'
           },
           params: params,
@@ -736,6 +838,7 @@ function Books(options) {
        * @memberOf! books(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.reason - The reason for which the book is added to the library.
        * @param  {string} params.shelf - ID of bookshelf to which to add a volume.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of volume to add.
@@ -745,7 +848,7 @@ function Books(options) {
       addVolume: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/addVolume',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/addVolume',
             method: 'POST'
           },
           params: params,
@@ -774,7 +877,7 @@ function Books(options) {
       clearVolumes: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/clearVolumes',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes',
             method: 'POST'
           },
           params: params,
@@ -803,7 +906,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}',
             method: 'GET'
           },
           params: params,
@@ -835,6 +938,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -860,7 +965,7 @@ function Books(options) {
       moveVolume: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/moveVolume',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/moveVolume',
             method: 'POST'
           },
           params: params,
@@ -881,6 +986,7 @@ function Books(options) {
        * @memberOf! books(v1)
        *
        * @param  {object} params - Parameters for request
+       * @param  {string=} params.reason - The reason for which the book is removed from the library.
        * @param  {string} params.shelf - ID of bookshelf from which to remove a volume.
        * @param  {string=} params.source - String to identify the originator of this request.
        * @param  {string} params.volumeId - ID of volume to remove.
@@ -890,7 +996,7 @@ function Books(options) {
       removeVolume: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/removeVolume',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/removeVolume',
             method: 'POST'
           },
           params: params,
@@ -927,7 +1033,7 @@ function Books(options) {
         list: function(params, callback) {
           var parameters = {
             options: {
-              url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/' + params.shelf + '/volumes',
+              url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/volumes',
               method: 'GET'
             },
             params: params,
@@ -961,7 +1067,7 @@ function Books(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/' + params.volumeId,
+            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}',
             method: 'GET'
           },
           params: params,
@@ -995,7 +1101,7 @@ function Books(options) {
       setPosition: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/' + params.volumeId + '/setPosition',
+            url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}/setPosition',
             method: 'POST'
           },
           params: params,
@@ -1007,6 +1113,69 @@ function Books(options) {
         return createAPIRequest(parameters, callback);
       }
     }
+  };
+
+  this.onboarding = {
+
+    /**
+     * books.onboarding.listCategories
+     *
+     * @desc List categories for onboarding experience.
+     *
+     * @alias books.onboarding.listCategories
+     * @memberOf! books(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listCategories: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/onboarding/listCategories',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * books.onboarding.listCategoryVolumes
+     *
+     * @desc List available volumes under categories for onboarding experience.
+     *
+     * @alias books.onboarding.listCategoryVolumes
+     * @memberOf! books(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.categoryId - List of category ids requested.
+     * @param  {string=} params.locale - ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param  {integer=} params.pageSize - Number of maximum results per page to be included in the response.
+     * @param  {string=} params.pageToken - The value of the nextToken from the previous page.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    listCategoryVolumes: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/books/v1/onboarding/listCategoryVolumes',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
   };
 
   this.promooffer = {
@@ -1038,6 +1207,8 @@ function Books(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1070,6 +1241,8 @@ function Books(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1101,6 +1274,8 @@ function Books(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1124,6 +1299,7 @@ function Books(options) {
      * @param  {string=} params.partner - Brand results for partner ID.
      * @param  {string=} params.projection - Restrict information returned to a set of selected fields.
      * @param  {string=} params.source - String to identify the originator of this request.
+     * @param  {boolean=} params.user_library_consistent_read -
      * @param  {string} params.volumeId - ID of volume to retrieve.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1131,7 +1307,7 @@ function Books(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId,
+          url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}',
           method: 'GET'
         },
         params: params,
@@ -1176,6 +1352,7 @@ function Books(options) {
         },
         params: params,
         requiredParams: ['q'],
+        pathParams: [],
         context: self
       };
 
@@ -1203,7 +1380,7 @@ function Books(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/books/v1/volumes/' + params.volumeId + '/associated',
+            url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/associated',
             method: 'GET'
           },
           params: params,
@@ -1243,6 +1420,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -1273,6 +1452,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -1303,6 +1484,7 @@ function Books(options) {
           },
           params: params,
           requiredParams: ['rating', 'volumeId'],
+          pathParams: [],
           context: self
         };
 
@@ -1337,6 +1519,8 @@ function Books(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 

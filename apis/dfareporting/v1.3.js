@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * DFA Reporting API
@@ -55,7 +56,7 @@ function Dfareporting(options) {
     query: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/dimensionvalues/query',
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/dimensionvalues/query',
           method: 'POST'
         },
         params: params,
@@ -88,7 +89,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/reports/' + params.reportId + '/files/' + params.fileId,
+          url: 'https://www.googleapis.com/dfareporting/v1.3/reports/{reportId}/files/{fileId}',
           method: 'GET'
         },
         params: params,
@@ -121,7 +122,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/files',
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/files',
           method: 'GET'
         },
         params: params,
@@ -154,7 +155,7 @@ function Dfareporting(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports/{reportId}',
           method: 'DELETE'
         },
         params: params,
@@ -183,7 +184,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports/{reportId}',
           method: 'GET'
         },
         params: params,
@@ -212,7 +213,7 @@ function Dfareporting(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports',
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports',
           method: 'POST'
         },
         params: params,
@@ -245,7 +246,7 @@ function Dfareporting(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports',
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports',
           method: 'GET'
         },
         params: params,
@@ -275,7 +276,7 @@ function Dfareporting(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports/{reportId}',
           method: 'PATCH'
         },
         params: params,
@@ -305,7 +306,7 @@ function Dfareporting(options) {
     run: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId + '/run',
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports/{reportId}/run',
           method: 'POST'
         },
         params: params,
@@ -335,7 +336,7 @@ function Dfareporting(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId,
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports/{reportId}',
           method: 'PUT'
         },
         params: params,
@@ -366,7 +367,7 @@ function Dfareporting(options) {
       query: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/compatiblefields/query',
+            url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports/compatiblefields/query',
             method: 'POST'
           },
           params: params,
@@ -399,7 +400,7 @@ function Dfareporting(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId + '/files/' + params.fileId,
+            url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports/{reportId}/files/{fileId}',
             method: 'GET'
           },
           params: params,
@@ -432,7 +433,7 @@ function Dfareporting(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId + '/reports/' + params.reportId + '/files',
+            url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}/reports/{reportId}/files',
             method: 'GET'
           },
           params: params,
@@ -464,7 +465,7 @@ function Dfareporting(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/' + params.profileId,
+          url: 'https://www.googleapis.com/dfareporting/v1.3/userprofiles/{profileId}',
           method: 'GET'
         },
         params: params,
@@ -495,6 +496,8 @@ function Dfareporting(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

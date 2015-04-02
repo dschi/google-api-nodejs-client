@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * AdSense Host API
@@ -52,7 +53,7 @@ function Adsensehost(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId,
+          url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}',
           method: 'GET'
         },
         params: params,
@@ -85,6 +86,7 @@ function Adsensehost(options) {
         },
         params: params,
         requiredParams: ['filterAdClientId'],
+        pathParams: [],
         context: self
       };
 
@@ -110,7 +112,7 @@ function Adsensehost(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients/' + params.adClientId,
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}',
             method: 'GET'
           },
           params: params,
@@ -140,7 +142,7 @@ function Adsensehost(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients',
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients',
             method: 'GET'
           },
           params: params,
@@ -173,7 +175,7 @@ function Adsensehost(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits/' + params.adUnitId,
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
             method: 'DELETE'
           },
           params: params,
@@ -203,7 +205,7 @@ function Adsensehost(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits/' + params.adUnitId,
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
             method: 'GET'
           },
           params: params,
@@ -234,7 +236,7 @@ function Adsensehost(options) {
       getAdCode: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits/' + params.adUnitId + '/adcode',
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode',
             method: 'GET'
           },
           params: params,
@@ -264,7 +266,7 @@ function Adsensehost(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits',
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'POST'
           },
           params: params,
@@ -296,7 +298,7 @@ function Adsensehost(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits',
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'GET'
           },
           params: params,
@@ -327,7 +329,7 @@ function Adsensehost(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits',
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'PATCH'
           },
           params: params,
@@ -357,7 +359,7 @@ function Adsensehost(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/adclients/' + params.adClientId + '/adunits',
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'PUT'
           },
           params: params,
@@ -397,7 +399,7 @@ function Adsensehost(options) {
       generate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/' + params.accountId + '/reports',
+            url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/reports',
             method: 'GET'
           },
           params: params,
@@ -429,7 +431,7 @@ function Adsensehost(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId,
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}',
           method: 'GET'
         },
         params: params,
@@ -462,6 +464,8 @@ function Adsensehost(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -496,6 +500,7 @@ function Adsensehost(options) {
         },
         params: params,
         requiredParams: ['productCode', 'websiteUrl'],
+        pathParams: [],
         context: self
       };
 
@@ -523,6 +528,7 @@ function Adsensehost(options) {
         },
         params: params,
         requiredParams: ['token'],
+        pathParams: [],
         context: self
       };
 
@@ -550,7 +556,7 @@ function Adsensehost(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId,
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'DELETE'
         },
         params: params,
@@ -579,7 +585,7 @@ function Adsensehost(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId,
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'GET'
         },
         params: params,
@@ -608,7 +614,7 @@ function Adsensehost(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/customchannels',
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'POST'
         },
         params: params,
@@ -638,7 +644,7 @@ function Adsensehost(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/customchannels',
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'GET'
         },
         params: params,
@@ -668,7 +674,7 @@ function Adsensehost(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/customchannels',
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'PATCH'
         },
         params: params,
@@ -697,7 +703,7 @@ function Adsensehost(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/customchannels',
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'PUT'
         },
         params: params,
@@ -742,6 +748,7 @@ function Adsensehost(options) {
         },
         params: params,
         requiredParams: ['startDate', 'endDate'],
+        pathParams: [],
         context: self
       };
 
@@ -769,7 +776,7 @@ function Adsensehost(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/urlchannels/' + params.urlChannelId,
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}',
           method: 'DELETE'
         },
         params: params,
@@ -798,7 +805,7 @@ function Adsensehost(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/urlchannels',
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels',
           method: 'POST'
         },
         params: params,
@@ -828,7 +835,7 @@ function Adsensehost(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/' + params.adClientId + '/urlchannels',
+          url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels',
           method: 'GET'
         },
         params: params,

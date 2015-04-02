@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Site Verification API
@@ -52,7 +53,7 @@ function Siteverification(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -80,7 +81,7 @@ function Siteverification(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'GET'
         },
         params: params,
@@ -112,6 +113,8 @@ function Siteverification(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -140,6 +143,7 @@ function Siteverification(options) {
         },
         params: params,
         requiredParams: ['verificationMethod'],
+        pathParams: [],
         context: self
       };
 
@@ -165,6 +169,8 @@ function Siteverification(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -188,7 +194,7 @@ function Siteverification(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'PATCH'
         },
         params: params,
@@ -217,7 +223,7 @@ function Siteverification(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/siteVerification/v1/webResource/' + params.id,
+          url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'PUT'
         },
         params: params,

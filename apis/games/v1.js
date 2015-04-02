@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Play Game Services API
@@ -58,6 +59,8 @@ function Games(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -86,7 +89,7 @@ function Games(options) {
     increment: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/increment',
+          url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/increment',
           method: 'POST'
         },
         params: params,
@@ -118,7 +121,7 @@ function Games(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/achievements',
+          url: 'https://www.googleapis.com/games/v1/players/{playerId}/achievements',
           method: 'GET'
         },
         params: params,
@@ -146,7 +149,7 @@ function Games(options) {
     reveal: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/reveal',
+          url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/reveal',
           method: 'POST'
         },
         params: params,
@@ -175,7 +178,7 @@ function Games(options) {
     setStepsAtLeast: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/setStepsAtLeast',
+          url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/setStepsAtLeast',
           method: 'POST'
         },
         params: params,
@@ -203,7 +206,7 @@ function Games(options) {
     unlock: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/achievements/' + params.achievementId + '/unlock',
+          url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/unlock',
           method: 'POST'
         },
         params: params,
@@ -235,6 +238,8 @@ function Games(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -254,7 +259,7 @@ function Games(options) {
      * @memberOf! games(v1)
      *
      * @param  {object} params - Parameters for request
-     * @param  {string} params.applicationId - The application being requested.
+     * @param  {string} params.applicationId - The application ID from the Google Play developer console.
      * @param  {string=} params.language - The preferred language to use for strings returned by this method.
      * @param  {string=} params.platformType - Restrict application details returned to the specific platform.
      * @param  {callback} callback - The callback that handles the response.
@@ -263,7 +268,7 @@ function Games(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/applications/' + params.applicationId,
+          url: 'https://www.googleapis.com/games/v1/applications/{applicationId}',
           method: 'GET'
         },
         params: params,
@@ -294,6 +299,8 @@ function Games(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -326,6 +333,8 @@ function Games(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -354,6 +363,8 @@ function Games(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -381,6 +392,8 @@ function Games(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -408,7 +421,7 @@ function Games(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId,
+          url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}',
           method: 'GET'
         },
         params: params,
@@ -442,6 +455,8 @@ function Games(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -471,6 +486,8 @@ function Games(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -497,7 +514,7 @@ function Games(options) {
     listCategoriesByPlayer: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/categories/' + params.collection,
+          url: 'https://www.googleapis.com/games/v1/players/{playerId}/categories/{collection}',
           method: 'GET'
         },
         params: params,
@@ -530,7 +547,7 @@ function Games(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId,
+          url: 'https://www.googleapis.com/games/v1/players/{playerId}',
           method: 'GET'
         },
         params: params,
@@ -561,7 +578,7 @@ function Games(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/players/me/players/' + params.collection,
+          url: 'https://www.googleapis.com/games/v1/players/me/players/{collection}',
           method: 'GET'
         },
         params: params,
@@ -597,6 +614,8 @@ function Games(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -623,6 +642,8 @@ function Games(options) {
           method: 'PUT'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -651,7 +672,7 @@ function Games(options) {
     claim: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/quests/' + params.questId + '/milestones/' + params.milestoneId + '/claim',
+          url: 'https://www.googleapis.com/games/v1/quests/{questId}/milestones/{milestoneId}/claim',
           method: 'PUT'
         },
         params: params,
@@ -684,7 +705,7 @@ function Games(options) {
     accept: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/quests/' + params.questId + '/accept',
+          url: 'https://www.googleapis.com/games/v1/quests/{questId}/accept',
           method: 'POST'
         },
         params: params,
@@ -715,7 +736,7 @@ function Games(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/quests',
+          url: 'https://www.googleapis.com/games/v1/players/{playerId}/quests',
           method: 'GET'
         },
         params: params,
@@ -752,6 +773,7 @@ function Games(options) {
         },
         params: params,
         requiredParams: ['clientRevision'],
+        pathParams: [],
         context: self
       };
 
@@ -783,6 +805,8 @@ function Games(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -806,7 +830,7 @@ function Games(options) {
     decline: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/decline',
+          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/decline',
           method: 'POST'
         },
         params: params,
@@ -834,7 +858,7 @@ function Games(options) {
     dismiss: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/dismiss',
+          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/dismiss',
           method: 'POST'
         },
         params: params,
@@ -863,7 +887,7 @@ function Games(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId,
+          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}',
           method: 'GET'
         },
         params: params,
@@ -893,7 +917,7 @@ function Games(options) {
     join: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/join',
+          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/join',
           method: 'POST'
         },
         params: params,
@@ -923,7 +947,7 @@ function Games(options) {
     leave: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/leave',
+          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/leave',
           method: 'POST'
         },
         params: params,
@@ -957,6 +981,8 @@ function Games(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -981,7 +1007,7 @@ function Games(options) {
     reportStatus: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/rooms/' + params.roomId + '/reportstatus',
+          url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/reportstatus',
           method: 'POST'
         },
         params: params,
@@ -1019,7 +1045,7 @@ function Games(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/leaderboards/' + params.leaderboardId + '/scores/' + params.timeSpan,
+          url: 'https://www.googleapis.com/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}',
           method: 'GET'
         },
         params: params,
@@ -1052,7 +1078,7 @@ function Games(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/scores/' + params.collection,
+          url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/scores/{collection}',
           method: 'GET'
         },
         params: params,
@@ -1087,7 +1113,7 @@ function Games(options) {
     listWindow: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/window/' + params.collection,
+          url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/window/{collection}',
           method: 'GET'
         },
         params: params,
@@ -1118,7 +1144,7 @@ function Games(options) {
     submit: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/leaderboards/' + params.leaderboardId + '/scores',
+          url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/scores',
           method: 'POST'
         },
         params: params,
@@ -1151,6 +1177,8 @@ function Games(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1178,7 +1206,7 @@ function Games(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/snapshots/' + params.snapshotId,
+          url: 'https://www.googleapis.com/games/v1/snapshots/{snapshotId}',
           method: 'GET'
         },
         params: params,
@@ -1209,7 +1237,7 @@ function Games(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/players/' + params.playerId + '/snapshots',
+          url: 'https://www.googleapis.com/games/v1/players/{playerId}/snapshots',
           method: 'GET'
         },
         params: params,
@@ -1241,7 +1269,7 @@ function Games(options) {
     cancel: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/cancel',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/cancel',
           method: 'PUT'
         },
         params: params,
@@ -1274,6 +1302,8 @@ function Games(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1297,7 +1327,7 @@ function Games(options) {
     decline: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/decline',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/decline',
           method: 'PUT'
         },
         params: params,
@@ -1325,7 +1355,7 @@ function Games(options) {
     dismiss: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/dismiss',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/dismiss',
           method: 'PUT'
         },
         params: params,
@@ -1355,7 +1385,7 @@ function Games(options) {
     finish: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/finish',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/finish',
           method: 'PUT'
         },
         params: params,
@@ -1385,7 +1415,7 @@ function Games(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId,
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}',
           method: 'GET'
         },
         params: params,
@@ -1414,7 +1444,7 @@ function Games(options) {
     join: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/join',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/join',
           method: 'PUT'
         },
         params: params,
@@ -1443,7 +1473,7 @@ function Games(options) {
     leave: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/leave',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/leave',
           method: 'PUT'
         },
         params: params,
@@ -1474,7 +1504,7 @@ function Games(options) {
     leaveTurn: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/leaveTurn',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/leaveTurn',
           method: 'PUT'
         },
         params: params,
@@ -1510,6 +1540,8 @@ function Games(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1534,7 +1566,7 @@ function Games(options) {
     rematch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/rematch',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/rematch',
           method: 'POST'
         },
         params: params,
@@ -1570,6 +1602,8 @@ function Games(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1594,7 +1628,7 @@ function Games(options) {
     takeTurn: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/' + params.matchId + '/turn',
+          url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/turn',
           method: 'PUT'
         },
         params: params,

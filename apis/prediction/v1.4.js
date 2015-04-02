@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Prediction API
@@ -53,7 +54,7 @@ function Prediction(options) {
     predict: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.4/hostedmodels/' + params.hostedModelName + '/predict',
+          url: 'https://www.googleapis.com/prediction/v1.4/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
         },
         params: params,
@@ -85,7 +86,7 @@ function Prediction(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}',
           method: 'DELETE'
         },
         params: params,
@@ -113,7 +114,7 @@ function Prediction(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}',
           method: 'GET'
         },
         params: params,
@@ -145,6 +146,8 @@ function Prediction(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -168,7 +171,7 @@ function Prediction(options) {
     predict: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id + '/predict',
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}/predict',
           method: 'POST'
         },
         params: params,
@@ -197,7 +200,7 @@ function Prediction(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/' + params.id,
+          url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}',
           method: 'PUT'
         },
         params: params,

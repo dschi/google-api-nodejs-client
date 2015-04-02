@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Ad Exchange Seller API
@@ -57,6 +58,8 @@ function Adexchangeseller(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -84,7 +87,7 @@ function Adexchangeseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/adunits/' + params.adUnitId,
+          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/adunits/{adUnitId}',
           method: 'GET'
         },
         params: params,
@@ -115,7 +118,7 @@ function Adexchangeseller(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/adunits',
+          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/adunits',
           method: 'GET'
         },
         params: params,
@@ -148,7 +151,7 @@ function Adexchangeseller(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/adunits/' + params.adUnitId + '/customchannels',
+            url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/adunits/{adUnitId}/customchannels',
             method: 'GET'
           },
           params: params,
@@ -181,7 +184,7 @@ function Adexchangeseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId,
+          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'GET'
         },
         params: params,
@@ -211,7 +214,7 @@ function Adexchangeseller(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/customchannels',
+          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/customchannels',
           method: 'GET'
         },
         params: params,
@@ -245,7 +248,7 @@ function Adexchangeseller(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/customchannels/' + params.customChannelId + '/adunits',
+            url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/customchannels/{customChannelId}/adunits',
             method: 'GET'
           },
           params: params,
@@ -290,6 +293,7 @@ function Adexchangeseller(options) {
         },
         params: params,
         requiredParams: ['startDate', 'endDate'],
+        pathParams: [],
         context: self
       };
 
@@ -317,7 +321,7 @@ function Adexchangeseller(options) {
       generate: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/adexchangeseller/v1/reports/' + params.savedReportId,
+            url: 'https://www.googleapis.com/adexchangeseller/v1/reports/{savedReportId}',
             method: 'GET'
           },
           params: params,
@@ -350,6 +354,8 @@ function Adexchangeseller(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -378,7 +384,7 @@ function Adexchangeseller(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/' + params.adClientId + '/urlchannels',
+          url: 'https://www.googleapis.com/adexchangeseller/v1/adclients/{adClientId}/urlchannels',
           method: 'GET'
         },
         params: params,

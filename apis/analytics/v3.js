@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Google Analytics API
@@ -70,6 +71,7 @@ function Analytics(options) {
           },
           params: params,
           requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+          pathParams: [],
           context: self
         };
 
@@ -109,6 +111,7 @@ function Analytics(options) {
           },
           params: params,
           requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+          pathParams: [],
           context: self
         };
 
@@ -144,6 +147,7 @@ function Analytics(options) {
           },
           params: params,
           requiredParams: ['ids', 'metrics'],
+          pathParams: [],
           context: self
         };
 
@@ -165,7 +169,7 @@ function Analytics(options) {
        * @memberOf! analytics(v3)
        *
        * @param  {object=} params - Parameters for request
-       * @param  {integer=} params.max-results - The maximum number of filters to include in this response.
+       * @param  {integer=} params.max-results - The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
        * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
@@ -177,6 +181,8 @@ function Analytics(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -203,7 +209,7 @@ function Analytics(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}',
             method: 'DELETE'
           },
           params: params,
@@ -232,7 +238,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks',
             method: 'POST'
           },
           params: params,
@@ -262,7 +268,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks',
             method: 'GET'
           },
           params: params,
@@ -292,7 +298,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/entityUserLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}',
             method: 'PUT'
           },
           params: params,
@@ -328,6 +334,8 @@ function Analytics(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -356,7 +364,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources',
             method: 'GET'
           },
           params: params,
@@ -369,34 +377,32 @@ function Analytics(options) {
       }
     },
 
-    dailyUploads: {
+    customDimensions: {
 
       /**
-       * analytics.management.dailyUploads.delete
+       * analytics.management.customDimensions.get
        *
-       * @desc Delete uploaded data for the given date.
+       * @desc Get a custom dimension to which the user has access.
        *
-       * @alias analytics.management.dailyUploads.delete
+       * @alias analytics.management.customDimensions.get
        * @memberOf! analytics(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account Id associated with daily upload delete.
-       * @param  {string} params.customDataSourceId - Custom data source Id associated with daily upload delete.
-       * @param  {string} params.date - Date for which data is to be deleted. Date should be formatted as YYYY-MM-DD.
-       * @param  {string} params.type - Type of data for this delete.
-       * @param  {string} params.webPropertyId - Web property Id associated with daily upload delete.
+       * @param  {string} params.accountId - Account ID for the custom dimension to retrieve.
+       * @param  {string} params.customDimensionId - The ID of the custom dimension to retrieve.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to retrieve.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function(params, callback) {
+      get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date,
-            method: 'DELETE'
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            method: 'GET'
           },
           params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'date', 'type'],
-          pathParams: ['accountId', 'customDataSourceId', 'date', 'webPropertyId'],
+          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
           context: self
         };
 
@@ -404,33 +410,60 @@ function Analytics(options) {
       },
 
       /**
-       * analytics.management.dailyUploads.list
+       * analytics.management.customDimensions.insert
        *
-       * @desc List daily uploads to which the user has access.
+       * @desc Create a new custom dimension.
        *
-       * @alias analytics.management.dailyUploads.list
+       * @alias analytics.management.customDimensions.insert
        * @memberOf! analytics(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account Id for the daily uploads to retrieve.
-       * @param  {string} params.customDataSourceId - Custom data source Id for daily uploads to retrieve.
-       * @param  {string} params.end-date - End date of the form YYYY-MM-DD.
-       * @param  {integer=} params.max-results - The maximum number of custom data sources to include in this response.
-       * @param  {string} params.start-date - Start date of the form YYYY-MM-DD.
-       * @param  {integer=} params.start-index - A 1-based index of the first daily upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
-       * @param  {string} params.webPropertyId - Web property Id for the daily uploads to retrieve.
+       * @param  {string} params.accountId - Account ID for the custom dimension to create.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to create.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customDimensions.list
+       *
+       * @desc Lists custom dimensions to which the user has access.
+       *
+       * @alias analytics.management.customDimensions.list
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom dimensions to retrieve.
+       * @param  {integer=} params.max-results - The maximum number of custom dimensions to include in this response.
+       * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimensions to retrieve.
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
             method: 'GET'
           },
           params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'start-date', 'end-date'],
-          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
           context: self
         };
 
@@ -438,37 +471,221 @@ function Analytics(options) {
       },
 
       /**
-       * analytics.management.dailyUploads.upload
+       * analytics.management.customDimensions.patch
        *
-       * @desc Update/Overwrite data for a custom data source.
+       * @desc Updates an existing custom dimension. This method supports patch semantics.
        *
-       * @alias analytics.management.dailyUploads.upload
+       * @alias analytics.management.customDimensions.patch
        * @memberOf! analytics(v3)
        *
        * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account Id associated with daily upload.
-       * @param  {integer} params.appendNumber - Append number for this upload indexed from 1.
-       * @param  {string} params.customDataSourceId - Custom data source Id to which the data being uploaded belongs.
-       * @param  {string} params.date - Date for which data is uploaded. Date should be formatted as YYYY-MM-DD.
-       * @param  {boolean=} params.reset - Reset/Overwrite all previous appends for this date and start over with this file as the first upload.
-       * @param  {string} params.type - Type of data for this upload.
-       * @param  {string} params.webPropertyId - Web property Id associated with daily upload.
-       * @param  {object} params.media - Media object
-       * @param  {string} params.media.mimeType - Media mime-type
-       * @param  {string|object} params.media.body - Media body contents
+       * @param  {string} params.accountId - Account ID for the custom dimension to update.
+       * @param  {string} params.customDimensionId - Custom dimension ID for the custom dimension to update.
+       * @param  {boolean=} params.ignoreCustomDataSourceLinks - Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to update.
+       * @param  {object} params.resource - Request body data
        * @param  {callback} callback - The callback that handles the response.
        * @return {object} Request object
        */
-      upload: function(params, callback) {
+      patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date + '/uploads',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customDimensions.update
+       *
+       * @desc Updates an existing custom dimension.
+       *
+       * @alias analytics.management.customDimensions.update
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom dimension to update.
+       * @param  {string} params.customDimensionId - Custom dimension ID for the custom dimension to update.
+       * @param  {boolean=} params.ignoreCustomDataSourceLinks - Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to update.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    customMetrics: {
+
+      /**
+       * analytics.management.customMetrics.get
+       *
+       * @desc Get a custom metric to which the user has access.
+       *
+       * @alias analytics.management.customMetrics.get
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metric to retrieve.
+       * @param  {string} params.customMetricId - The ID of the custom metric to retrieve.
+       * @param  {string} params.webPropertyId - Web property ID for the custom metric to retrieve.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customMetrics.insert
+       *
+       * @desc Create a new custom metric.
+       *
+       * @alias analytics.management.customMetrics.insert
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metric to create.
+       * @param  {string} params.webPropertyId - Web property ID for the custom dimension to create.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/dailyUploads/' + params.date + '/uploads',
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'date', 'appendNumber', 'type'],
-          pathParams: ['accountId', 'customDataSourceId', 'date', 'webPropertyId'],
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customMetrics.list
+       *
+       * @desc Lists custom metrics to which the user has access.
+       *
+       * @alias analytics.management.customMetrics.list
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metrics to retrieve.
+       * @param  {integer=} params.max-results - The maximum number of custom metrics to include in this response.
+       * @param  {integer=} params.start-index - An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param  {string} params.webPropertyId - Web property ID for the custom metrics to retrieve.
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customMetrics.patch
+       *
+       * @desc Updates an existing custom metric. This method supports patch semantics.
+       *
+       * @alias analytics.management.customMetrics.patch
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metric to update.
+       * @param  {string} params.customMetricId - Custom metric ID for the custom metric to update.
+       * @param  {boolean=} params.ignoreCustomDataSourceLinks - Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+       * @param  {string} params.webPropertyId - Web property ID for the custom metric to update.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.customMetrics.update
+       *
+       * @desc Updates an existing custom metric.
+       *
+       * @alias analytics.management.customMetrics.update
+       * @memberOf! analytics(v3)
+       *
+       * @param  {object} params - Parameters for request
+       * @param  {string} params.accountId - Account ID for the custom metric to update.
+       * @param  {string} params.customMetricId - Custom metric ID for the custom metric to update.
+       * @param  {boolean=} params.ignoreCustomDataSourceLinks - Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
+       * @param  {string} params.webPropertyId - Web property ID for the custom metric to update.
+       * @param  {object} params.resource - Request body data
+       * @param  {callback} callback - The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function(params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
           context: self
         };
 
@@ -497,7 +714,7 @@ function Analytics(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'DELETE'
           },
           params: params,
@@ -528,7 +745,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'GET'
           },
           params: params,
@@ -559,7 +776,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments',
             method: 'POST'
           },
           params: params,
@@ -591,7 +808,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments',
             method: 'GET'
           },
           params: params,
@@ -623,7 +840,7 @@ function Analytics(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'PATCH'
           },
           params: params,
@@ -655,7 +872,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/experiments/' + params.experimentId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'PUT'
           },
           params: params,
@@ -687,7 +904,7 @@ function Analytics(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'DELETE'
           },
           params: params,
@@ -716,7 +933,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'GET'
           },
           params: params,
@@ -745,7 +962,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters',
             method: 'POST'
           },
           params: params,
@@ -775,7 +992,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters',
             method: 'GET'
           },
           params: params,
@@ -805,7 +1022,7 @@ function Analytics(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'PATCH'
           },
           params: params,
@@ -835,7 +1052,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/filters/' + params.filterId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'PUT'
           },
           params: params,
@@ -869,7 +1086,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'GET'
           },
           params: params,
@@ -900,7 +1117,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'POST'
           },
           params: params,
@@ -932,7 +1149,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'GET'
           },
           params: params,
@@ -964,7 +1181,7 @@ function Analytics(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'PATCH'
           },
           params: params,
@@ -996,7 +1213,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/goals/' + params.goalId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'PUT'
           },
           params: params,
@@ -1030,7 +1247,7 @@ function Analytics(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'DELETE'
           },
           params: params,
@@ -1061,7 +1278,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'GET'
           },
           params: params,
@@ -1092,7 +1309,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks',
             method: 'POST'
           },
           params: params,
@@ -1124,7 +1341,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks',
             method: 'GET'
           },
           params: params,
@@ -1156,7 +1373,7 @@ function Analytics(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'PATCH'
           },
           params: params,
@@ -1188,7 +1405,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/profileFilterLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'PUT'
           },
           params: params,
@@ -1222,7 +1439,7 @@ function Analytics(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}',
             method: 'DELETE'
           },
           params: params,
@@ -1253,7 +1470,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks',
             method: 'POST'
           },
           params: params,
@@ -1285,7 +1502,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks',
             method: 'GET'
           },
           params: params,
@@ -1317,7 +1534,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/entityUserLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}',
             method: 'PUT'
           },
           params: params,
@@ -1350,7 +1567,7 @@ function Analytics(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'DELETE'
           },
           params: params,
@@ -1380,7 +1597,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'GET'
           },
           params: params,
@@ -1410,7 +1627,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'POST'
           },
           params: params,
@@ -1441,7 +1658,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'GET'
           },
           params: params,
@@ -1472,7 +1689,7 @@ function Analytics(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'PATCH'
           },
           params: params,
@@ -1503,7 +1720,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'PUT'
           },
           params: params,
@@ -1539,6 +1756,8 @@ function Analytics(options) {
             method: 'GET'
           },
           params: params,
+          requiredParams: [],
+          pathParams: [],
           context: self
         };
 
@@ -1567,7 +1786,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports/' + params.unsampledReportId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}',
             method: 'GET'
           },
           params: params,
@@ -1598,7 +1817,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports',
             method: 'POST'
           },
           params: params,
@@ -1630,7 +1849,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/profiles/' + params.profileId + '/unsampledReports',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports',
             method: 'GET'
           },
           params: params,
@@ -1664,7 +1883,7 @@ function Analytics(options) {
       deleteUploadData: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/deleteUploadData',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData',
             method: 'POST'
           },
           params: params,
@@ -1695,7 +1914,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads/' + params.uploadId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}',
             method: 'GET'
           },
           params: params,
@@ -1727,38 +1946,8 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
             method: 'GET'
-          },
-          params: params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
-          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * analytics.management.uploads.migrateDataImport
-       *
-       * @desc Migrate custom data source and data imports to latest version.
-       *
-       * @alias analytics.management.uploads.migrateDataImport
-       * @memberOf! analytics(v3)
-       *
-       * @param  {object} params - Parameters for request
-       * @param  {string} params.accountId - Account Id for migration.
-       * @param  {string} params.customDataSourceId - Custom data source Id for migration.
-       * @param  {string} params.webPropertyId - Web property Id for migration.
-       * @param  {callback} callback - The callback that handles the response.
-       * @return {object} Request object
-       */
-      migrateDataImport: function(params, callback) {
-        var parameters = {
-          options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/migrateDataImport',
-            method: 'POST'
           },
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
@@ -1790,11 +1979,11 @@ function Analytics(options) {
       uploadData: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
             method: 'POST'
           },
           params: params,
-          mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/customDataSources/' + params.customDataSourceId + '/uploads',
+          mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
           context: self
@@ -1824,7 +2013,7 @@ function Analytics(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'DELETE'
           },
           params: params,
@@ -1854,7 +2043,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'GET'
           },
           params: params,
@@ -1884,7 +2073,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks',
             method: 'POST'
           },
           params: params,
@@ -1915,7 +2104,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks',
             method: 'GET'
           },
           params: params,
@@ -1946,7 +2135,7 @@ function Analytics(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'PATCH'
           },
           params: params,
@@ -1977,7 +2166,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityAdWordsLinks/' + params.webPropertyAdWordsLinkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'PUT'
           },
           params: params,
@@ -2009,7 +2198,7 @@ function Analytics(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'GET'
           },
           params: params,
@@ -2038,7 +2227,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties',
             method: 'POST'
           },
           params: params,
@@ -2068,7 +2257,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties',
             method: 'GET'
           },
           params: params,
@@ -2098,7 +2287,7 @@ function Analytics(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'PATCH'
           },
           params: params,
@@ -2128,7 +2317,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'PUT'
           },
           params: params,
@@ -2161,7 +2350,7 @@ function Analytics(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}',
             method: 'DELETE'
           },
           params: params,
@@ -2191,7 +2380,7 @@ function Analytics(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks',
             method: 'POST'
           },
           params: params,
@@ -2222,7 +2411,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks',
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks',
             method: 'GET'
           },
           params: params,
@@ -2253,7 +2442,7 @@ function Analytics(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/management/accounts/' + params.accountId + '/webproperties/' + params.webPropertyId + '/entityUserLinks/' + params.linkId,
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}',
             method: 'PUT'
           },
           params: params,
@@ -2287,7 +2476,7 @@ function Analytics(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/analytics/v3/metadata/' + params.reportType + '/columns',
+            url: 'https://www.googleapis.com/analytics/v3/metadata/{reportType}/columns',
             method: 'GET'
           },
           params: params,
@@ -2323,6 +2512,8 @@ function Analytics(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 

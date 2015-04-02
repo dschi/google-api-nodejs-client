@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Admin Directory API
@@ -53,7 +54,7 @@ function Admin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps/' + params.codeId,
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
           method: 'DELETE'
         },
         params: params,
@@ -82,7 +83,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps/' + params.codeId,
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
           method: 'GET'
         },
         params: params,
@@ -110,7 +111,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/asps',
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps',
           method: 'GET'
         },
         params: params,
@@ -142,10 +143,12 @@ function Admin(options) {
     stop: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1//admin/directory_v1/channels/stop',
+          url: 'https://www.googleapis.com/admin/directory/v1/admin/directory_v1/channels/stop',
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -174,7 +177,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'GET'
         },
         params: params,
@@ -208,7 +211,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos',
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos',
           method: 'GET'
         },
         params: params,
@@ -239,7 +242,7 @@ function Admin(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'PATCH'
         },
         params: params,
@@ -270,7 +273,7 @@ function Admin(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/chromeos/' + params.deviceId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'PUT'
         },
         params: params,
@@ -302,7 +305,7 @@ function Admin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'DELETE'
         },
         params: params,
@@ -330,7 +333,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'GET'
         },
         params: params,
@@ -362,6 +365,8 @@ function Admin(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -392,6 +397,8 @@ function Admin(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -415,7 +422,7 @@ function Admin(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'PATCH'
         },
         params: params,
@@ -444,7 +451,7 @@ function Admin(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'PUT'
         },
         params: params,
@@ -475,7 +482,7 @@ function Admin(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/aliases/' + params.alias,
+            url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases/{alias}',
             method: 'DELETE'
           },
           params: params,
@@ -504,7 +511,7 @@ function Admin(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/aliases',
+            url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
             method: 'POST'
           },
           params: params,
@@ -532,7 +539,7 @@ function Admin(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/aliases',
+            url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
             method: 'GET'
           },
           params: params,
@@ -565,7 +572,7 @@ function Admin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'DELETE'
         },
         params: params,
@@ -594,7 +601,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'GET'
         },
         params: params,
@@ -623,7 +630,7 @@ function Admin(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members',
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
           method: 'POST'
         },
         params: params,
@@ -654,7 +661,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members',
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
           method: 'GET'
         },
         params: params,
@@ -684,7 +691,7 @@ function Admin(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'PATCH'
         },
         params: params,
@@ -714,7 +721,7 @@ function Admin(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/groups/' + params.groupKey + '/members/' + params.memberKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'PUT'
         },
         params: params,
@@ -748,7 +755,7 @@ function Admin(options) {
     action: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId + '/action',
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action',
           method: 'POST'
         },
         params: params,
@@ -777,7 +784,7 @@ function Admin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
           method: 'DELETE'
         },
         params: params,
@@ -807,7 +814,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile/' + params.resourceId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
           method: 'GET'
         },
         params: params,
@@ -841,7 +848,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/devices/mobile',
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile',
           method: 'GET'
         },
         params: params,
@@ -874,7 +881,7 @@ function Admin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'DELETE'
         },
         params: params,
@@ -903,7 +910,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'GET'
         },
         params: params,
@@ -934,7 +941,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications',
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications',
           method: 'GET'
         },
         params: params,
@@ -964,7 +971,7 @@ function Admin(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'PATCH'
         },
         params: params,
@@ -994,7 +1001,7 @@ function Admin(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customer + '/notifications/' + params.notificationId,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'PUT'
         },
         params: params,
@@ -1027,7 +1034,7 @@ function Admin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'DELETE'
         },
         params: params,
@@ -1056,7 +1063,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'GET'
         },
         params: params,
@@ -1085,7 +1092,7 @@ function Admin(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits',
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
           method: 'POST'
         },
         params: params,
@@ -1115,7 +1122,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits',
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
           method: 'GET'
         },
         params: params,
@@ -1145,7 +1152,7 @@ function Admin(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'PATCH'
         },
         params: params,
@@ -1175,12 +1182,191 @@ function Admin(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/customer/' + params.customerId + '/orgunits' + params.orgUnitPath,
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'PUT'
         },
         params: params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.schemas = {
+
+    /**
+     * directory.schemas.delete
+     *
+     * @desc Delete schema
+     *
+     * @alias directory.schemas.delete
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Immutable id of the Google Apps account
+     * @param  {string} params.schemaKey - Name or immutable Id of the schema
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['customerId', 'schemaKey'],
+        pathParams: ['customerId', 'schemaKey'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.schemas.get
+     *
+     * @desc Retrieve schema
+     *
+     * @alias directory.schemas.get
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Immutable id of the Google Apps account
+     * @param  {string} params.schemaKey - Name or immutable Id of the schema
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId', 'schemaKey'],
+        pathParams: ['customerId', 'schemaKey'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.schemas.insert
+     *
+     * @desc Create schema.
+     *
+     * @alias directory.schemas.insert
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Immutable id of the Google Apps account
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.schemas.list
+     *
+     * @desc Retrieve all schemas for a customer
+     *
+     * @alias directory.schemas.list
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Immutable id of the Google Apps account
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.schemas.patch
+     *
+     * @desc Update schema. This method supports patch semantics.
+     *
+     * @alias directory.schemas.patch
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Immutable id of the Google Apps account
+     * @param  {string} params.schemaKey - Name or immutable Id of the schema.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['customerId', 'schemaKey'],
+        pathParams: ['customerId', 'schemaKey'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * directory.schemas.update
+     *
+     * @desc Update schema
+     *
+     * @alias directory.schemas.update
+     * @memberOf! admin(directory_v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Immutable id of the Google Apps account
+     * @param  {string} params.schemaKey - Name or immutable Id of the schema.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['customerId', 'schemaKey'],
+        pathParams: ['customerId', 'schemaKey'],
         context: self
       };
 
@@ -1208,7 +1394,7 @@ function Admin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens/' + params.clientId,
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
           method: 'DELETE'
         },
         params: params,
@@ -1237,7 +1423,7 @@ function Admin(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens/' + params.clientId,
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
           method: 'GET'
         },
         params: params,
@@ -1265,7 +1451,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/tokens',
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens',
           method: 'GET'
         },
         params: params,
@@ -1297,7 +1483,7 @@ function Admin(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'DELETE'
         },
         params: params,
@@ -1318,14 +1504,17 @@ function Admin(options) {
      * @memberOf! admin(directory_v1)
      *
      * @param  {object} params - Parameters for request
+     * @param  {string=} params.customFieldMask - Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     * @param  {string=} params.projection - What subset of fields to fetch for this user.
      * @param  {string} params.userKey - Email or immutable Id of the user
+     * @param  {string=} params.viewType - Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'GET'
         },
         params: params,
@@ -1357,6 +1546,8 @@ function Admin(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1372,15 +1563,18 @@ function Admin(options) {
      * @memberOf! admin(directory_v1)
      *
      * @param  {object=} params - Parameters for request
+     * @param  {string=} params.customFieldMask - Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      * @param  {string=} params.customer - Immutable id of the Google Apps account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      * @param  {string=} params.domain - Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      * @param  {string=} params.event - Event on which subscription is intended (if subscribing)
      * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 100. Max allowed is 500
      * @param  {string=} params.orderBy - Column to use for sorting results
      * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {string=} params.query - Query string search. Should be of the form "" where field can be any of supported fields, operators can be one of '=' for exact match or ':' for prefix match. For prefix match, the value should always be followed by a *.
+     * @param  {string=} params.projection - What subset of fields to fetch for this user.
+     * @param  {string=} params.query - Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
      * @param  {string=} params.showDeleted - If set to true retrieves the list of deleted users. Default is false
      * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order.
+     * @param  {string=} params.viewType - Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
      */
@@ -1391,6 +1585,8 @@ function Admin(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1414,7 +1610,7 @@ function Admin(options) {
     makeAdmin: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/makeAdmin',
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/makeAdmin',
           method: 'POST'
         },
         params: params,
@@ -1443,7 +1639,7 @@ function Admin(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'PATCH'
         },
         params: params,
@@ -1472,7 +1668,7 @@ function Admin(options) {
     undelete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/undelete',
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/undelete',
           method: 'POST'
         },
         params: params,
@@ -1501,7 +1697,7 @@ function Admin(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey,
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'PUT'
         },
         params: params,
@@ -1522,15 +1718,18 @@ function Admin(options) {
      * @memberOf! admin(directory_v1)
      *
      * @param  {object} params - Parameters for request
+     * @param  {string=} params.customFieldMask - Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      * @param  {string=} params.customer - Immutable id of the Google Apps account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      * @param  {string=} params.domain - Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      * @param  {string=} params.event - Event on which subscription is intended (if subscribing)
      * @param  {integer=} params.maxResults - Maximum number of results to return. Default is 100. Max allowed is 500
      * @param  {string=} params.orderBy - Column to use for sorting results
      * @param  {string=} params.pageToken - Token to specify next page in the list
-     * @param  {string=} params.query - Query string search. Should be of the form "" where field can be any of supported fields, operators can be one of '=' for exact match or ':' for prefix match. For prefix match, the value should always be followed by a *.
+     * @param  {string=} params.projection - What subset of fields to fetch for this user.
+     * @param  {string=} params.query - Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
      * @param  {string=} params.showDeleted - If set to true retrieves the list of deleted users. Default is false
      * @param  {string=} params.sortOrder - Whether to return results in ascending or descending order.
+     * @param  {string=} params.viewType - Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      * @param  {object} params.resource - Request body data
      * @param  {callback} callback - The callback that handles the response.
      * @return {object} Request object
@@ -1542,6 +1741,8 @@ function Admin(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -1567,7 +1768,7 @@ function Admin(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/aliases/' + params.alias,
+            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/{alias}',
             method: 'DELETE'
           },
           params: params,
@@ -1596,7 +1797,7 @@ function Admin(options) {
       insert: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/aliases',
+            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
             method: 'POST'
           },
           params: params,
@@ -1625,7 +1826,7 @@ function Admin(options) {
       list: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/aliases',
+            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
             method: 'GET'
           },
           params: params,
@@ -1655,7 +1856,7 @@ function Admin(options) {
       watch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/aliases/watch',
+            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/watch',
             method: 'POST'
           },
           params: params,
@@ -1686,7 +1887,7 @@ function Admin(options) {
       delete: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/photos/thumbnail',
+            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'DELETE'
           },
           params: params,
@@ -1714,7 +1915,7 @@ function Admin(options) {
       get: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/photos/thumbnail',
+            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'GET'
           },
           params: params,
@@ -1743,7 +1944,7 @@ function Admin(options) {
       patch: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/photos/thumbnail',
+            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'PATCH'
           },
           params: params,
@@ -1772,7 +1973,7 @@ function Admin(options) {
       update: function(params, callback) {
         var parameters = {
           options: {
-            url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/photos/thumbnail',
+            url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'PUT'
           },
           params: params,
@@ -1804,7 +2005,7 @@ function Admin(options) {
     generate: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes/generate',
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/generate',
           method: 'POST'
         },
         params: params,
@@ -1832,7 +2033,7 @@ function Admin(options) {
     invalidate: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes/invalidate',
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/invalidate',
           method: 'POST'
         },
         params: params,
@@ -1860,7 +2061,7 @@ function Admin(options) {
     list: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/admin/directory/v1/users/' + params.userKey + '/verificationCodes',
+          url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes',
           method: 'GET'
         },
         params: params,

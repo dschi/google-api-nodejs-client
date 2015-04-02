@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * Enterprise Apps Reseller API
@@ -52,7 +53,7 @@ function Reseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}',
           method: 'GET'
         },
         params: params,
@@ -85,6 +86,8 @@ function Reseller(options) {
           method: 'POST'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -108,7 +111,7 @@ function Reseller(options) {
     patch: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}',
           method: 'PATCH'
         },
         params: params,
@@ -137,7 +140,7 @@ function Reseller(options) {
     update: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId,
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}',
           method: 'PUT'
         },
         params: params,
@@ -152,6 +155,35 @@ function Reseller(options) {
   };
 
   this.subscriptions = {
+
+    /**
+     * reseller.subscriptions.activate
+     *
+     * @desc Activates a subscription previously suspended by the reseller
+     *
+     * @alias reseller.subscriptions.activate
+     * @memberOf! reseller(v1sandbox)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Id of the Customer
+     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    activate: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/activate',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * reseller.subscriptions.changePlan
@@ -171,7 +203,7 @@ function Reseller(options) {
     changePlan: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changePlan',
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/changePlan',
           method: 'POST'
         },
         params: params,
@@ -201,7 +233,7 @@ function Reseller(options) {
     changeRenewalSettings: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changeRenewalSettings',
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings',
           method: 'POST'
         },
         params: params,
@@ -231,7 +263,7 @@ function Reseller(options) {
     changeSeats: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/changeSeats',
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats',
           method: 'POST'
         },
         params: params,
@@ -261,7 +293,7 @@ function Reseller(options) {
     delete: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId,
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}',
           method: 'DELETE'
         },
         params: params,
@@ -290,7 +322,7 @@ function Reseller(options) {
     get: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId,
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}',
           method: 'GET'
         },
         params: params,
@@ -320,7 +352,7 @@ function Reseller(options) {
     insert: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions',
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions',
           method: 'POST'
         },
         params: params,
@@ -356,6 +388,8 @@ function Reseller(options) {
           method: 'GET'
         },
         params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -379,7 +413,36 @@ function Reseller(options) {
     startPaidService: function(params, callback) {
       var parameters = {
         options: {
-          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/' + params.customerId + '/subscriptions/' + params.subscriptionId + '/startPaidService',
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['customerId', 'subscriptionId'],
+        pathParams: ['customerId', 'subscriptionId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * reseller.subscriptions.suspend
+     *
+     * @desc Suspends an active subscription
+     *
+     * @alias reseller.subscriptions.suspend
+     * @memberOf! reseller(v1sandbox)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.customerId - Id of the Customer
+     * @param  {string} params.subscriptionId - Id of the subscription, which is unique for a customer
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    suspend: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/apps/reseller/v1sandbox/customers/{customerId}/subscriptions/{subscriptionId}/suspend',
           method: 'POST'
         },
         params: params,

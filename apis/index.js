@@ -16,7 +16,7 @@
 'use strict';
 
 var path = require('path');
-
+var util = require('util');
 /**
  * Return a Function that requires an API from the disk
  * @param  {String} filename Filename of API
@@ -24,34 +24,35 @@ var path = require('path');
  * @private
  */
 function requireAPI(filename) {
-  return function(options) {
-    var type = typeof options;
-    var version;
-    if (type === 'string') {
-      version = options;
-      options = {};
-    } else if (type === 'object') {
-      version = options.version;
-      delete options.version;
-    } else {
-      throw new Error('Argument error: Accepts only string or object');
-    }
-    try {
-      var Endpoint = require(__dirname + '/' + filename + '/' + path.basename(version));
-      var ep = new Endpoint(options);
-      ep.google = this; // for drive.google.transporter
-      return Object.freeze(ep); // create new & freeze
-    } catch (e) {
-      console.log(e);
-      throw new Error('Error: Version \"' + version + '\" not found.');
-    }
+    return function(options) {
+      var type = typeof options;
+      var version;
+      if (type === 'string') {
+        version = options;
+        options = {};
+      } else if (type === 'object') {
+        version = options.version;
+        delete options.version;
+      } else {
+        throw new Error('Argument error: Accepts only string or object');
+      }
+      try {
+        var endpointPath = path.join(__dirname, filename, path.basename(version));
+        var Endpoint = require(endpointPath);
+        var ep = new Endpoint(options);
+        ep.google = this; // for drive.google.transporter
+        return Object.freeze(ep); // create new & freeze
+      } catch (e) {
+        throw new Error(util.format('Unable to load endpoint %s("%s"): %s',
+          filename, version, e.message));
+      }
+    };
   }
-}
-/**
- * APIs to be exported
- * @type {Object}
- * @private
- */
+  /**
+   * APIs to be exported
+   * @type {Object}
+   * @private
+   */
 var APIs = {
   'adexchangebuyer': requireAPI('adexchangebuyer'),
   'adexchangeseller': requireAPI('adexchangeseller'),
@@ -59,6 +60,7 @@ var APIs = {
   'adsense': requireAPI('adsense'),
   'adsensehost': requireAPI('adsensehost'),
   'analytics': requireAPI('analytics'),
+  'androidenterprise': requireAPI('androidenterprise'),
   'androidpublisher': requireAPI('androidpublisher'),
   'appsactivity': requireAPI('appsactivity'),
   'appstate': requireAPI('appstate'),
@@ -72,50 +74,58 @@ var APIs = {
   'cloudmonitoring': requireAPI('cloudmonitoring'),
   'cloudprint': requireAPI('cloudprint'),
   'compute': requireAPI('compute'),
+  'container': requireAPI('container'),
   'content': requireAPI('content'),
   'coordinate': requireAPI('coordinate'),
   'customsearch': requireAPI('customsearch'),
+  'dataflow': requireAPI('dataflow'),
   'datastore': requireAPI('datastore'),
+  'deploymentmanager': requireAPI('deploymentmanager'),
   'dfareporting': requireAPI('dfareporting'),
   'discovery': requireAPI('discovery'),
   'dns': requireAPI('dns'),
   'doubleclickbidmanager': requireAPI('doubleclickbidmanager'),
   'doubleclicksearch': requireAPI('doubleclicksearch'),
   'drive': requireAPI('drive'),
+  'fitness': requireAPI('fitness'),
   'freebase': requireAPI('freebase'),
   'fusiontables': requireAPI('fusiontables'),
   'games': requireAPI('games'),
+  'gamesConfiguration': requireAPI('gamesConfiguration'),
   'gamesManagement': requireAPI('gamesManagement'),
   'gan': requireAPI('gan'),
   'genomics': requireAPI('genomics'),
   'gmail': requireAPI('gmail'),
   'groupsmigration': requireAPI('groupsmigration'),
   'groupssettings': requireAPI('groupssettings'),
+  'cloudlatencytest': requireAPI('cloudlatencytest'),
+  'pubsub': requireAPI('pubsub'),
   'identitytoolkit': requireAPI('identitytoolkit'),
   'licensing': requireAPI('licensing'),
   'manager': requireAPI('manager'),
   'mapsengine': requireAPI('mapsengine'),
   'mirror': requireAPI('mirror'),
   'oauth2': requireAPI('oauth2'),
-  'orkut': requireAPI('orkut'),
   'pagespeedonline': requireAPI('pagespeedonline'),
   'plus': requireAPI('plus'),
   'plusDomains': requireAPI('plusDomains'),
   'prediction': requireAPI('prediction'),
-  'pubsub': requireAPI('pubsub'),
   'qpxExpress': requireAPI('qpxExpress'),
   'replicapool': requireAPI('replicapool'),
+  'replicapoolupdater': requireAPI('replicapoolupdater'),
   'reseller': requireAPI('reseller'),
   'resourceviews': requireAPI('resourceviews'),
   'siteVerification': requireAPI('siteVerification'),
   'spectrum': requireAPI('spectrum'),
   'sqladmin': requireAPI('sqladmin'),
   'storage': requireAPI('storage'),
+  'tagmanager': requireAPI('tagmanager'),
   'taskqueue': requireAPI('taskqueue'),
   'tasks': requireAPI('tasks'),
   'translate': requireAPI('translate'),
   'urlshortener': requireAPI('urlshortener'),
   'webfonts': requireAPI('webfonts'),
+  'webmasters': requireAPI('webmasters'),
   'youtube': requireAPI('youtube'),
   'youtubeAnalytics': requireAPI('youtubeAnalytics')
 };

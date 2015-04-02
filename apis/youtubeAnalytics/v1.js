@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
+/* jshint maxlen: false */
+
 'use strict';
 
-var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = require('../../lib/apirequest');
 
 /**
  * YouTube Analytics API
@@ -57,6 +58,7 @@ function Youtubeanalytics(options) {
         },
         params: params,
         requiredParams: ['onBehalfOfContentOwner'],
+        pathParams: [],
         context: self
       };
 
@@ -89,6 +91,219 @@ function Youtubeanalytics(options) {
         },
         params: params,
         requiredParams: ['batchReportDefinitionId', 'onBehalfOfContentOwner'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.groupItems = {
+
+    /**
+     * youtubeAnalytics.groupItems.delete
+     *
+     * @desc Removes an item from a group.
+     *
+     * @alias youtubeAnalytics.groupItems.delete
+     * @memberOf! youtubeAnalytics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The id parameter specifies the YouTube group item ID for the group that is being deleted.
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtubeAnalytics.groupItems.insert
+     *
+     * @desc Creates a group item.
+     *
+     * @alias youtubeAnalytics.groupItems.insert
+     * @memberOf! youtubeAnalytics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtubeAnalytics.groupItems.list
+     *
+     * @desc Returns a collection of group items that match the API request parameters.
+     *
+     * @alias youtubeAnalytics.groupItems.list
+     * @memberOf! youtubeAnalytics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.groupId - The id parameter specifies the unique ID of the group for which you want to retrieve group items.
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['groupId'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  this.groups = {
+
+    /**
+     * youtubeAnalytics.groups.delete
+     *
+     * @desc Deletes a group.
+     *
+     * @alias youtubeAnalytics.groups.delete
+     * @memberOf! youtubeAnalytics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string} params.id - The id parameter specifies the YouTube group ID for the group that is being deleted.
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
+          method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['id'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtubeAnalytics.groups.insert
+     *
+     * @desc Creates a group.
+     *
+     * @alias youtubeAnalytics.groups.insert
+     * @memberOf! youtubeAnalytics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtubeAnalytics.groups.list
+     *
+     * @desc Returns a collection of groups that match the API request parameters. For example, you can retrieve all groups that the authenticated user owns, or you can retrieve one or more groups by their unique IDs.
+     *
+     * @alias youtubeAnalytics.groups.list
+     * @memberOf! youtubeAnalytics(v1)
+     *
+     * @param  {object=} params - Parameters for request
+     * @param  {string=} params.id - The id parameter specifies a comma-separated list of the YouTube group ID(s) for the resource(s) that are being retrieved. In a group resource, the id property specifies the group's YouTube group ID.
+     * @param  {boolean=} params.mine - Set this parameter's value to true to instruct the API to only return groups owned by the authenticated user.
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * youtubeAnalytics.groups.update
+     *
+     * @desc Modifies a group. For example, you could change a group's title.
+     *
+     * @alias youtubeAnalytics.groups.update
+     * @memberOf! youtubeAnalytics(v1)
+     *
+     * @param  {object} params - Parameters for request
+     * @param  {string=} params.onBehalfOfContentOwner - Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param  {object} params.resource - Request body data
+     * @param  {callback} callback - The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function(params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
         context: self
       };
 
@@ -128,6 +343,7 @@ function Youtubeanalytics(options) {
         },
         params: params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+        pathParams: [],
         context: self
       };
 
