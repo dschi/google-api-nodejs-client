@@ -49,6 +49,29 @@ function CloudPrint(options) {
                 context: self
             };
             return createAPIRequest(parameters, callback);
+        },
+        get: function (params, callback) {
+            var parameters = {
+                options: {
+                    url: 'https://www.google.com/cloudprint/jobs',
+                    method: 'POST'
+                },
+                params: params,
+                context: self
+            };
+            return createAPIRequest(parameters, callback);
+        },
+        delete: function (params, callback) {
+            var parameters = {
+                options: {
+                    url: 'https://www.google.com/cloudprint/deletejob',
+                    method: 'POST'
+                },
+                params: params,
+                requiredParams: ['jobid'],
+                context: self
+            };
+            return createAPIRequest(parameters, callback);
         }
     }
 }
