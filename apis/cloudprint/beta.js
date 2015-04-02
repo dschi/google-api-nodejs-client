@@ -5,7 +5,7 @@
 'use strict';
 
 var apirequest = require('../../lib/apirequest');
-var createAPIRequest = apirequest.createAPIRequest;
+var createAPIRequest = apirequest;
 
 function CloudPrint(options) {
 
@@ -18,6 +18,8 @@ function CloudPrint(options) {
                     url: 'https://www.google.com/cloudprint/search',
                     method: 'POST'
                 },
+                requiredParams: [],
+                pathParams: [],
                 params: params,
                 context: self
             };
@@ -31,6 +33,7 @@ function CloudPrint(options) {
                 },
                 params: params,
                 requiredParams: ['printerid'],
+                pathParams: [],
                 context: self
             };
             return createAPIRequest(parameters, callback);
@@ -46,6 +49,7 @@ function CloudPrint(options) {
                 },
                 params: params,
                 requiredParams: ['printerid','title','ticket','content'],
+                pathParams: [],
                 context: self
             };
             return createAPIRequest(parameters, callback);
@@ -56,6 +60,8 @@ function CloudPrint(options) {
                     url: 'https://www.google.com/cloudprint/jobs',
                     method: 'POST'
                 },
+                requiredParams: [],
+                pathParams: [],
                 params: params,
                 context: self
             };
@@ -69,6 +75,7 @@ function CloudPrint(options) {
                 },
                 params: params,
                 requiredParams: ['jobid'],
+                pathParams: [],
                 context: self
             };
             return createAPIRequest(parameters, callback);
